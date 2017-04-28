@@ -10,4 +10,10 @@ Este repositorio fue creado para el proyecto de IIC2513-2017-1
 
 ## Proyecto
 
-El proyecto asignado a este grupo corresponde a un gestor de apuestas que permita crear nuevos eventos, apostar en ellos, y administrar los eventos.
+El proyecto consiste en un gestor de apuestas que permita crear nuevos eventos, apostar en ellos, y administrar los eventos.
+
+El usuario común puede crear apuestas en distintos eventos a los que tenga acceso.
+
+El gestor de apuestas puede crear eventos públicos o privados donde los usuarios crean sus apuestas.
+
+El administrados puede crear cuentas de gestor de apuestas.
