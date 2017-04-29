@@ -687,3 +687,76 @@ FOREIGN KEY ("match_id")
   [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(6207023292248803500)[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6207023292248803500);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ForeignKeysMatches (20170429191113)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "bets" DROP "match_id"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "bets" ADD "match_id" integer[0m
+  [1m[35m (10.8ms)[0m  [1m[35mCREATE  INDEX  "index_bets_on_match_id" ON "bets"  ("match_id")[0m
+  [1m[35m (6.2ms)[0m  [1m[35mALTER TABLE "bets" ADD CONSTRAINT "fk_rails_ac8e6fd9cd"
+FOREIGN KEY ("match_id")
+  REFERENCES "matches" ("id")
+[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "matches" ALTER "match_date" SET NOT NULL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "matches" ALTER "bet_date" SET NOT NULL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "matches" ALTER "state" SET NOT NULL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "events" ALTER "type" SET NOT NULL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "events" ALTER "private" SET NOT NULL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "events" RENAME COLUMN "start" TO "date_start"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "events" RENAME COLUMN "end" TO "date_end"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "events" ALTER "date_start" SET NOT NULL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "events" ALTER "date_end" SET NOT NULL[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170429191113"]]
+  [1m[35m (2.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePlayersTable (20170429192500)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "players" ("id" serial primary key, "name" text NOT NULL, "description" text)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170429192500"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (4.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(6207023292248803500)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (4.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6207023292248803500);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateParticipationTable (20170429192736)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "participations" ("id" serial primary key, "placing" integer NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "participations" ADD "player_id" integer[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_player_id" ON "participations"  ("player_id")[0m
+  [1m[35m (5.9ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_fa54aaa276"
+FOREIGN KEY ("player_id")
+  REFERENCES "players" ("id")
+[0m
+  [1m[35m (4.1ms)[0m  [1m[35mALTER TABLE "participations" ADD "match_id" integer[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_match_id" ON "participations"  ("match_id")[0m
+  [1m[35m (2.8ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_cef7047618"
+FOREIGN KEY ("match_id")
+  REFERENCES "matches" ("id")
+[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170429192736"]]
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(6207023292248803500)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6207023292248803500);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to MatchEventReference (20170429193151)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "matches" ADD "event_id" integer[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE  INDEX  "index_matches_on_event_id" ON "matches"  ("event_id")[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_7069ec1376"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170429193151"]]
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (2.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(6207023292248803500)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (7.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m

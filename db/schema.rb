@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429191113) do
+ActiveRecord::Schema.define(version: 20170429193151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,21 @@ ActiveRecord::Schema.define(version: 20170429191113) do
     t.integer  "state",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "event_id"
+    t.index ["event_id"], name: "index_matches_on_event_id", using: :btree
+  end
+
+  create_table "participations", force: :cascade do |t|
+    t.integer "placing",   null: false
+    t.integer "player_id"
+    t.integer "match_id"
+    t.index ["match_id"], name: "index_participations_on_match_id", using: :btree
+    t.index ["player_id"], name: "index_participations_on_player_id", using: :btree
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.text "name",        null: false
+    t.text "description"
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,4 +76,7 @@ ActiveRecord::Schema.define(version: 20170429191113) do
   add_foreign_key "bets", "matches"
   add_foreign_key "bets", "users"
   add_foreign_key "events", "users"
+  add_foreign_key "matches", "events"
+  add_foreign_key "participations", "matches"
+  add_foreign_key "participations", "players"
 end
