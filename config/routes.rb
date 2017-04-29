@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :teams
   resources :bets
   resources :matches
   resources :events
