@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429204953) do
+ActiveRecord::Schema.define(version: 20170429212329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bets", force: :cascade do |t|
     t.integer  "ammount",    null: false
-    t.integer  "state",      null: false
+    t.integer  "bet_state",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
     t.integer  "match_id"
+    t.integer  "user_id"
     t.index ["match_id"], name: "index_bets_on_match_id", using: :btree
     t.index ["user_id"], name: "index_bets_on_user_id", using: :btree
   end
