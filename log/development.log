@@ -760,3 +760,153 @@ FOREIGN KEY ("event_id")
   [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(6207023292248803500)[0m
   [1m[36mActiveRecord::SchemaMigration Load (7.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/users" for 127.0.0.1 at 2017-04-29 16:56:40 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.0.2) lib/active_record/migration.rb:573:in `check_pending!'
+activerecord (5.0.2) lib/active_record/migration.rb:549:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.2) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.2) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.2) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.2) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.5.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.2) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (2.6ms)
+  Rendering /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendering /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (65.7ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6207023292248803500);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePlayersTable (20170429192500)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (36.2ms)[0m  [1m[35mCREATE TABLE "players" ("id" serial primary key, "name" text NOT NULL, "description" text)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170429192500"]]
+  [1m[35m (3.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateParticipationTable (20170429192736)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "participations" ("id" serial primary key, "placing" integer NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "participations" ADD "player_id" integer[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_player_id" ON "participations"  ("player_id")[0m
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_fa54aaa276"
+FOREIGN KEY ("player_id")
+  REFERENCES "players" ("id")
+[0m
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "participations" ADD "match_id" integer[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_match_id" ON "participations"  ("match_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_cef7047618"
+FOREIGN KEY ("match_id")
+  REFERENCES "matches" ("id")
+[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170429192736"]]
+  [1m[35m (7.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to MatchEventReference (20170429193151)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "matches" ADD "event_id" integer[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE  INDEX  "index_matches_on_event_id" ON "matches"  ("event_id")[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_7069ec1376"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170429193151"]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (5.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(6207023292248803500)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/users" for 127.0.0.1 at 2017-04-29 16:57:04 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (48.6ms)
+Completed 200 OK in 1064ms (Views: 1002.3ms | ActiveRecord: 9.0ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2017-04-29 16:57:09 -0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (77.1ms)
+  Rendered users/new.html.erb within layouts/application (83.4ms)
+Completed 200 OK in 205ms (Views: 199.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-04-29 16:57:45 -0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RYy0Jt38vsIm00qcnwnmDGHxinbQcI0S6p2jE/GKBbHj2/pL7axt0Wyuft+/wgWUAJX0VCcN0IxJBqUxa5Jk7Q==", "user"=>{"email"=>"asdadsadsa@uc.cl", "first_name"=>"", "last_name"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "coins"=>"", "role"=>""}, "commit"=>"Create User"}
+  [1m[35m (3.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "asdadsadsa@uc.cl"], ["LIMIT", 1]]
+  [1m[35m (3.4ms)[0m  [1m[31mROLLBACK[0m
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (26.0ms)
+  Rendered users/new.html.erb within layouts/application (32.9ms)
+Completed 200 OK in 213ms (Views: 140.1ms | ActiveRecord: 7.3ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-04-29 16:58:23 -0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BaDZtu3Bw2fWWXlpGf+BrC3CWihN/XQ2+N15c1Pk4Hi/kk+xbEj6YCsgPGmcHByNqKfuviW3HRswLpE2acenmw==", "user"=>{"email"=>"mjjunneman@uc.cl", "first_name"=>"Matias", "last_name"=>"Junemann", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "coins"=>"10", "role"=>"1"}, "commit"=>"Create User"}
+  [1m[35m (2.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (2.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "mjjunneman@uc.cl"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "password", "coins", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "mjjunneman@uc.cl"], ["first_name", "Matias"], ["last_name", "Junemann"], ["password", "matias"], ["coins", 10], ["role", 1], ["created_at", 2017-04-29 19:58:23 UTC], ["updated_at", 2017-04-29 19:58:23 UTC]]
+  [1m[35m (42.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 55ms (ActiveRecord: 47.5ms)
+
+
+Started GET "/users/4" for 127.0.0.1 at 2017-04-29 16:58:24 -0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 112ms (Views: 76.5ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-04-29 16:58:36 -0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 71ms (Views: 68.6ms | ActiveRecord: 1.3ms)
+
+
