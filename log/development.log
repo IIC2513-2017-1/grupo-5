@@ -509,3 +509,34 @@ Processing by EventsController#index as HTML
 Completed 200 OK in 1012ms (Views: 994.7ms | ActiveRecord: 2.6ms)
 
 
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6207023292248803500);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateEvents (20170429184016)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (209.8ms)[0m  [1m[35mCREATE TABLE "events" ("id" serial primary key, "type" text, "gestor" text, "private" boolean, "start" date, "end" date, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170429184016"]]
+  [1m[35m (2.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to EditIDsOnTables (20170429184557)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "bets" RENAME COLUMN "match" TO "match_id"[0m
+  [1m[35m (1.8ms)[0m  [1m[35mALTER TABLE "bets" DROP "user"[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "events" DROP "gestor"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "bets" ADD "user_id" integer[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE  INDEX  "index_bets_on_user_id" ON "bets"  ("user_id")[0m
+  [1m[35m (47.7ms)[0m  [1m[35mALTER TABLE "bets" ADD CONSTRAINT "fk_rails_87dbfdd206"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "events" ADD "user_id" integer[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE  INDEX  "index_events_on_user_id" ON "events"  ("user_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "events" ADD CONSTRAINT "fk_rails_0cb5590091"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170429184557"]]
+  [1m[35m (3.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(6207023292248803500)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
