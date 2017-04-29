@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :type %>
-    <%= f.text_area :type %>
+    <%= f.label :event_type %>
+    <%= f.text_field :event_type, required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :gestor %>
-    <%= f.text_area :gestor %>
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id, required: true %>
   </div>
 
   <div class="field">
@@ -27,13 +27,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :start %>
-    <%= f.date_select :start %>
+    <%= f.label :date_start %>
+    <%= f.date_select :date_start, required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :end %>
-    <%= f.date_select :end %>
+    <%= f.label :date_end %>
+    <%= f.date_select :date_end, required: true %>
   </div>
 
   <div class="actions">

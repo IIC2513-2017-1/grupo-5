@@ -17,11 +17,11 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.type %></td>
-        <td><%= event.gestor %></td>
+        <td><%= event.event_type %></td>
+        <td><%= event.user_id %></td>
         <td><%= event.private %></td>
-        <td><%= event.start %></td>
-        <td><%= event.end %></td>
+        <td><%= event.date_start %></td>
+        <td><%= event.date_end %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>

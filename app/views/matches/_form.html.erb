@@ -12,23 +12,28 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :event_id %>
+    <%= f.number_field :event_id, required: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :match_date %>
-    <%= f.date_select :match_date %>
+    <%= f.date_select :match_date, required: true %>
   </div>
 
   <div class="field">
     <%= f.label :bet_date %>
-    <%= f.date_select :bet_date %>
+    <%= f.date_select :bet_date, required: true %>
   </div>
 
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_area :name %>
+    <%= f.text_field :name, default: "" %>
   </div>
 
   <div class="field">
     <%= f.label :state %>
-    <%= f.number_field :state %>
+    <%= f.number_field :state, default: 0, required: true %>
   </div>
 
   <div class="actions">
