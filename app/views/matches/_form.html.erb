@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :event_id %>
-    <%= f.number_field :event_id, required: true %>
+    <%= f.select :event_id, Event.all.collect {|event| [event.id]}, {include_blank: true}, {required: true} %>
   </div>
 
   <div class="field">

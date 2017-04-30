@@ -23,17 +23,17 @@
 
   <div class="field">
     <%= f.label :match_id %>
-    <%= f.number_field :match_id, required: true %>
+    <%= f.select :match_id, Match.all.collect {|match| [match.id]}, {include_blank: true}, {required: true} %>
   </div>
 
   <div class="field">
     <%= f.label :user_id %>
-    <%= f.number_field :user_id, required: true %>
+    <%= f.select :used_id, User.all.collect {|user| [user.id]}, {include_blank: true}, {required: true} %>
   </div>
 
   <div class="field">
     <%= f.label :team_id %>
-    <%= f.number_field :team_id %>
+    <%= f.select :team_id, Team.all.collect {|team| [team.id]}, {include_blank: true}, {required: true} %>
   </div>
 
   <div class="actions">
