@@ -58,13 +58,19 @@ ActiveRecord::Schema.define(version: 20170430224833) do
   end
 
   create_table "participations", force: :cascade do |t|
-    t.integer "placing",   null: false
-    t.integer "player_id"
+    t.integer "placing",  null: false
     t.integer "match_id"
     t.integer "team_id"
     t.index ["match_id"], name: "index_participations_on_match_id", using: :btree
-    t.index ["player_id"], name: "index_participations_on_player_id", using: :btree
     t.index ["team_id"], name: "index_participations_on_team_id", using: :btree
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.text     "name"
+    t.string   "description"
+    t.string   "text"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "teams", force: :cascade do |t|
