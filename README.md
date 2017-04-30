@@ -17,3 +17,7 @@ El usuario común puede crear apuestas en distintos eventos a los que tenga acce
 El gestor de apuestas puede crear eventos públicos o privados donde los usuarios crean sus apuestas.
 
 El administrados puede crear cuentas de gestor de apuestas.
+
+## Heroku
+
+https://glacial-refuge-24922.herokuapp.com
