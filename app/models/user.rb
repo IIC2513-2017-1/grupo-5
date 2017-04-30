@@ -5,4 +5,5 @@ class User < ApplicationRecord
                     format: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   has_many :bets
   has_many :events
+  has_many :invitations
 end

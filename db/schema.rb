@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170430222351) do
+ActiveRecord::Schema.define(version: 20170430224833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,9 @@ ActiveRecord::Schema.define(version: 20170430222351) do
     t.datetime "updated_at", null: false
     t.integer  "match_id"
     t.integer  "user_id"
+    t.integer  "team_id"
     t.index ["match_id"], name: "index_bets_on_match_id", using: :btree
+    t.index ["team_id"], name: "index_bets_on_team_id", using: :btree
     t.index ["user_id"], name: "index_bets_on_user_id", using: :btree
   end
 
@@ -35,6 +37,13 @@ ActiveRecord::Schema.define(version: 20170430222351) do
     t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_invitations_on_event_id", using: :btree
+    t.index ["user_id"], name: "index_invitations_on_user_id", using: :btree
   end
 
   create_table "matches", force: :cascade do |t|
@@ -78,8 +87,11 @@ ActiveRecord::Schema.define(version: 20170430222351) do
   end
 
   add_foreign_key "bets", "matches"
+  add_foreign_key "bets", "teams"
   add_foreign_key "bets", "users"
   add_foreign_key "events", "users"
+  add_foreign_key "invitations", "events"
+  add_foreign_key "invitations", "users"
   add_foreign_key "matches", "events"
   add_foreign_key "participations", "matches"
   add_foreign_key "participations", "teams"

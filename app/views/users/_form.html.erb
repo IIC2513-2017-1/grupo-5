@@ -38,12 +38,12 @@
 
   <div class="field">
     <%= f.label :coins %>
-    <%= f.number_field :coins %>
+    <%= f.number_field :coins, default: 0, required: true %>
   </div>
 
   <div class="field">
     <%= f.label :role %>
-    <%= f.number_field :role %>
+    <%= f.number_field :role, required: true %>
   </div>
 
   <div class="actions">

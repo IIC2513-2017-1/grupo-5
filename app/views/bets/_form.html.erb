@@ -13,12 +13,27 @@
 
   <div class="field">
     <%= f.label :ammount %>
-    <%= f.number_field :ammount %>
+    <%= f.number_field :ammount, required: true %>
   </div>
 
   <div class="field">
     <%= f.label :bet_state %>
-    <%= f.number_field :bet_state %>
+    <%= f.number_field :bet_state, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :match_id %>
+    <%= f.number_field :match_id, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :team_id %>
+    <%= f.number_field :team_id %>
   </div>
 
   <div class="actions">
