@@ -20,4 +20,4 @@ El administrados puede crear cuentas de gestor de apuestas.
 
 ## Heroku
 
-https://glacial-refuge-24922.herokuapp.com
+https://mighty-savannah-24617.herokuapp.com
