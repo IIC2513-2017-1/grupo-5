@@ -2702,3 +2702,516 @@ Processing by WelcomeController#index as HTML
 Completed 200 OK in 931ms (Views: 910.4ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/bets" for 127.0.0.1 at 2017-05-05 14:41:24 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (22.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BetsController#index as HTML
+  Rendering bets/index.html.erb within layouts/application
+  [1m[36mBet Load (498.9ms)[0m  [1m[34mSELECT "bets".* FROM "bets"[0m
+  Rendered bets/index.html.erb within layouts/application (1385.3ms)
+Completed 200 OK in 2201ms (Views: 1641.6ms | ActiveRecord: 500.7ms)
+
+
+Started GET "/bets/new" for 127.0.0.1 at 2017-05-05 14:42:02 -0300
+Processing by BetsController#new as HTML
+  Rendering bets/new.html.erb within layouts/application
+  [1m[36mMatch Load (23.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  [1m[36mUser Load (15.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTeam Load (12.9ms)[0m  [1m[34mSELECT "teams".* FROM "teams"[0m
+  Rendered bets/_form.html.erb (237.3ms)
+  Rendered bets/new.html.erb within layouts/application (248.3ms)
+Completed 200 OK in 461ms (Views: 282.6ms | ActiveRecord: 170.6ms)
+
+
+Started GET "/matches" for 127.0.0.1 at 2017-05-05 14:42:18 -0300
+Processing by MatchesController#index as HTML
+  Rendering matches/index.html.erb within layouts/application
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  Rendered matches/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 72ms (Views: 62.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/matches/new" for 127.0.0.1 at 2017-05-05 14:42:20 -0300
+Processing by MatchesController#new as HTML
+  Rendering matches/new.html.erb within layouts/application
+  [1m[36mEvent Load (119.1ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered matches/_form.html.erb (187.5ms)
+  Rendered matches/new.html.erb within layouts/application (280.0ms)
+Completed 200 OK in 387ms (Views: 242.2ms | ActiveRecord: 124.9ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2017-05-05 14:42:27 -0300
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 83ms (Views: 79.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-05-05 14:42:29 -0300
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  [1m[36mUser Load (4.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/_form.html.erb (110.9ms)
+  Rendered events/new.html.erb within layouts/application (115.5ms)
+Completed 200 OK in 253ms (Views: 174.2ms | ActiveRecord: 7.7ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-05-05 14:42:44 -0300
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VcPd9odS7cxcX8LzYEsDEy0hPoEg3rWxX2kccSqKKfn08RIoXGHNEXXCfeY1qbBMZu+PasEBI23vqd1HLiupug==", "event"=>{"event_type"=>"asdadsadas", "user_id"=>"4", "private"=>"0", "date_start(1i)"=>"2017", "date_start(2i)"=>"5", "date_start(3i)"=>"5", "date_end(1i)"=>"2017", "date_end(2i)"=>"5", "date_end(3i)"=>"5"}, "commit"=>"Create Event"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (30.7ms)[0m  [1m[32mINSERT INTO "events" ("event_type", "private", "date_start", "date_end", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["event_type", "asdadsadas"], ["private", false], ["date_start", Fri, 05 May 2017], ["date_end", Fri, 05 May 2017], ["created_at", 2017-05-05 17:42:44 UTC], ["updated_at", 2017-05-05 17:42:44 UTC], ["user_id", 4]]
+  [1m[35m (3.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/events/1
+Completed 302 Found in 108ms (ActiveRecord: 35.3ms)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2017-05-05 14:42:44 -0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 67ms (Views: 57.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2017-05-05 14:42:47 -0300
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 81ms (Views: 78.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/matches" for 127.0.0.1 at 2017-05-05 14:42:51 -0300
+Processing by MatchesController#index as HTML
+  Rendering matches/index.html.erb within layouts/application
+  [1m[36mMatch Load (1.9ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  Rendered matches/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 62ms (Views: 59.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/matches/new" for 127.0.0.1 at 2017-05-05 14:42:53 -0300
+Processing by MatchesController#new as HTML
+  Rendering matches/new.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered matches/_form.html.erb (14.7ms)
+  Rendered matches/new.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 78ms (Views: 76.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/matches" for 127.0.0.1 at 2017-05-05 14:43:00 -0300
+Processing by MatchesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3+gdcqz89b35h7RYlZyRm637P2WayI0ES9FO0VBD3V4x0J8yXH7uJok0Wt4BR/ruTN0IYiDNt13cnBnGwjNwZw==", "match"=>{"event_id"=>"1", "match_date(1i)"=>"2017", "match_date(2i)"=>"5", "match_date(3i)"=>"5", "bet_date(1i)"=>"2017", "bet_date(2i)"=>"5", "bet_date(3i)"=>"5", "name"=>"sdadsadasds", "state"=>"1"}, "commit"=>"Create Match"}
+  [1m[35m (1.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Load (3.7ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (23.9ms)[0m  [1m[32mINSERT INTO "matches" ("match_date", "bet_date", "name", "state", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["match_date", Fri, 05 May 2017], ["bet_date", Fri, 05 May 2017], ["name", "sdadsadasds"], ["state", 1], ["created_at", 2017-05-05 17:43:00 UTC], ["updated_at", 2017-05-05 17:43:00 UTC], ["event_id", 1]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/matches/1
+Completed 302 Found in 45ms (ActiveRecord: 31.9ms)
+
+
+Started GET "/matches/1" for 127.0.0.1 at 2017-05-05 14:43:00 -0300
+Processing by MatchesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering matches/show.html.erb within layouts/application
+  Rendered matches/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 88ms (Views: 74.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/matches" for 127.0.0.1 at 2017-05-05 14:43:07 -0300
+Processing by MatchesController#index as HTML
+  Rendering matches/index.html.erb within layouts/application
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  Rendered matches/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 64ms (Views: 63.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/bets" for 127.0.0.1 at 2017-05-05 14:43:11 -0300
+Processing by BetsController#index as HTML
+  Rendering bets/index.html.erb within layouts/application
+  [1m[36mBet Load (2.0ms)[0m  [1m[34mSELECT "bets".* FROM "bets"[0m
+  Rendered bets/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 65ms (Views: 62.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bets/new" for 127.0.0.1 at 2017-05-05 14:43:13 -0300
+Processing by BetsController#new as HTML
+  Rendering bets/new.html.erb within layouts/application
+  [1m[36mMatch Load (1.8ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  [1m[36mUser Load (4.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTeam Load (0.5ms)[0m  [1m[34mSELECT "teams".* FROM "teams"[0m
+  Rendered bets/_form.html.erb (14.2ms)
+  Rendered bets/new.html.erb within layouts/application (23.0ms)
+Completed 200 OK in 89ms (Views: 81.4ms | ActiveRecord: 6.7ms)
+
+
+Started POST "/bets" for 127.0.0.1 at 2017-05-05 14:43:25 -0300
+Processing by BetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Lwu+GIr0BewB9Y8bGX1YqPEXjcKqL2al9WZysZAu+8pJsERz1PLI8P0G4ReWjI41yn4nQcjoLoh5AoHwBIjjRg==", "bet"=>{"ammount"=>"1", "bet_state"=>"0", "match_id"=>"1", "user_id"=>"2", "team_id"=>"1"}, "commit"=>"Create Bet"}
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (8.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mMatch Load (8.4ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTeam Load (3.0ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (24.2ms)[0m  [1m[32mINSERT INTO "bets" ("ammount", "bet_state", "created_at", "updated_at", "match_id", "user_id", "team_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["ammount", 1], ["bet_state", 0], ["created_at", 2017-05-05 17:43:25 UTC], ["updated_at", 2017-05-05 17:43:25 UTC], ["match_id", 1], ["user_id", 2], ["team_id", 1]]
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/bets/1
+Completed 302 Found in 82ms (ActiveRecord: 50.0ms)
+
+
+Started GET "/bets/1" for 127.0.0.1 at 2017-05-05 14:43:25 -0300
+Processing by BetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBet Load (2.0ms)[0m  [1m[34mSELECT  "bets".* FROM "bets" WHERE "bets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering bets/show.html.erb within layouts/application
+  Rendered bets/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 90ms (Views: 74.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bets" for 127.0.0.1 at 2017-05-05 14:43:31 -0300
+Processing by BetsController#index as HTML
+  Rendering bets/index.html.erb within layouts/application
+  [1m[36mBet Load (2.8ms)[0m  [1m[34mSELECT "bets".* FROM "bets"[0m
+  Rendered bets/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 66ms (Views: 62.2ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/bets" for 127.0.0.1 at 2017-05-05 14:52:19 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (4.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BetsController#index as HTML
+  Rendering bets/index.html.erb within layouts/application
+  [1m[36mBet Load (4.8ms)[0m  [1m[34mSELECT "bets".* FROM "bets"[0m
+  Rendered bets/index.html.erb within layouts/application (49.1ms)
+Completed 200 OK in 626ms (Views: 559.9ms | ActiveRecord: 10.6ms)
+
+
+Started GET "/bets/new" for 127.0.0.1 at 2017-05-05 14:52:23 -0300
+Processing by BetsController#new as HTML
+  Rendering bets/new.html.erb within layouts/application
+  [1m[36mMatch Load (0.7ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTeam Load (5.4ms)[0m  [1m[34mSELECT "teams".* FROM "teams"[0m
+  Rendered bets/_form.html.erb (180.9ms)
+  Rendered bets/new.html.erb within layouts/application (182.2ms)
+Completed 200 OK in 254ms (Views: 226.6ms | ActiveRecord: 26.2ms)
+
+
+Started GET "/matches" for 127.0.0.1 at 2017-05-05 14:52:28 -0300
+Processing by MatchesController#index as HTML
+  Rendering matches/index.html.erb within layouts/application
+  [1m[36mMatch Load (2.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  Rendered matches/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 76ms (Views: 68.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/matches/new" for 127.0.0.1 at 2017-05-05 14:52:31 -0300
+Processing by MatchesController#new as HTML
+  Rendering matches/new.html.erb within layouts/application
+  [1m[36mEvent Load (5.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered matches/_form.html.erb (53.7ms)
+  Rendered matches/new.html.erb within layouts/application (57.5ms)
+Completed 200 OK in 118ms (Views: 109.5ms | ActiveRecord: 7.8ms)
+
+
+Started POST "/matches" for 127.0.0.1 at 2017-05-05 14:53:02 -0300
+Processing by MatchesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FbBhgLvHKhg6u1lIw9a3i8a3JJEgpUkcXYiYUuTLLTnh9jw+QvZwRSk2s7dEOegyhCnQlLhJDlMjpKjZOR2diQ==", "match"=>{"event_id"=>"1", "match_date(1i)"=>"2017", "match_date(2i)"=>"5", "match_date(3i)"=>"5", "bet_date(1i)"=>"2017", "bet_date(2i)"=>"5", "bet_date(3i)"=>"4", "name"=>"sadasdsadas", "state"=>"0"}, "commit"=>"Create Match"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "matches" ("match_date", "bet_date", "name", "state", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["match_date", Fri, 05 May 2017], ["bet_date", Thu, 04 May 2017], ["name", "sadasdsadas"], ["state", 0], ["created_at", 2017-05-05 17:53:02 UTC], ["updated_at", 2017-05-05 17:53:02 UTC], ["event_id", 1]]
+  [1m[35m (43.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/matches/2
+Completed 302 Found in 105ms (ActiveRecord: 46.1ms)
+
+
+Started GET "/matches/2" for 127.0.0.1 at 2017-05-05 14:53:02 -0300
+Processing by MatchesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering matches/show.html.erb within layouts/application
+  Rendered matches/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 78ms (Views: 72.9ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/matches/2/edit" for 127.0.0.1 at 2017-05-05 14:53:25 -0300
+Processing by MatchesController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mMatch Load (1.8ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering matches/edit.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered matches/_form.html.erb (10.8ms)
+  Rendered matches/edit.html.erb within layouts/application (19.2ms)
+Completed 200 OK in 101ms (Views: 79.1ms | ActiveRecord: 2.2ms)
+
+
+Started PATCH "/matches/2" for 127.0.0.1 at 2017-05-05 14:53:29 -0300
+Processing by MatchesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WcW5ZrMDmfFiSCVN8PCyaGOAksgS0qltZfS1gC9jT9dlfSnkupRrWhrCxl4pCxbWtRSBMNxgMidztR5BDAU0Tg==", "match"=>{"event_id"=>"1", "match_date(1i)"=>"2017", "match_date(2i)"=>"5", "match_date(3i)"=>"5", "bet_date(1i)"=>"2017", "bet_date(2i)"=>"5", "bet_date(3i)"=>"6", "name"=>"sadasdsadas", "state"=>"0"}, "commit"=>"Update Match", "id"=>"2"}
+  [1m[36mMatch Load (1.8ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  Rendering matches/edit.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered matches/_form.html.erb (13.5ms)
+  Rendered matches/edit.html.erb within layouts/application (19.3ms)
+Completed 200 OK in 89ms (Views: 77.1ms | ActiveRecord: 2.7ms)
+
+
+Started PATCH "/matches/2" for 127.0.0.1 at 2017-05-05 14:53:40 -0300
+Processing by MatchesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"XDMgjah6fQInNByS3UWUJuPCiYhP3+N078loIYCKEC/zsb7taTU7uPcDG1JPi0J7IuIb3PbLAGYENC26XCoFGQ==", "match"=>{"event_id"=>"1", "match_date(1i)"=>"2017", "match_date(2i)"=>"5", "match_date(3i)"=>"5", "bet_date(1i)"=>"2017", "bet_date(2i)"=>"5", "bet_date(3i)"=>"5", "name"=>"sadasdsadas", "state"=>"0"}, "commit"=>"Update Match", "id"=>"2"}
+  [1m[36mMatch Load (1.7ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (19.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Load (7.7ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "matches" SET "bet_date" = $1, "updated_at" = $2 WHERE "matches"."id" = $3[0m  [["bet_date", Fri, 05 May 2017], ["updated_at", 2017-05-05 17:53:40 UTC], ["id", 2]]
+  [1m[35m (2.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/matches/2
+Completed 302 Found in 41ms (ActiveRecord: 31.7ms)
+
+
+Started GET "/matches/2" for 127.0.0.1 at 2017-05-05 14:53:40 -0300
+Processing by MatchesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering matches/show.html.erb within layouts/application
+  Rendered matches/show.html.erb within layouts/application (21.3ms)
+Completed 200 OK in 99ms (Views: 91.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/matches/2/edit" for 127.0.0.1 at 2017-05-05 14:53:55 -0300
+Processing by MatchesController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mMatch Load (3.3ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering matches/edit.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered matches/_form.html.erb (53.5ms)
+  Rendered matches/edit.html.erb within layouts/application (60.1ms)
+Completed 200 OK in 160ms (Views: 115.3ms | ActiveRecord: 8.8ms)
+
+
+Started PATCH "/matches/2" for 127.0.0.1 at 2017-05-05 14:53:59 -0300
+Processing by MatchesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"p4qe+Dq9FJerSvhAcY/5TbZcw014LqDc9FHws30XWj2bMg56MyrmPNPAG1OodF3zYMjQtbacO5biEFtyXnEhpA==", "match"=>{"event_id"=>"1", "match_date(1i)"=>"2017", "match_date(2i)"=>"5", "match_date(3i)"=>"5", "bet_date(1i)"=>"2017", "bet_date(2i)"=>"5", "bet_date(3i)"=>"6", "name"=>"sadasdsadas", "state"=>"0"}, "commit"=>"Update Match", "id"=>"2"}
+  [1m[36mMatch Load (3.0ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Load (4.7ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering matches/edit.html.erb within layouts/application
+  [1m[36mEvent Load (5.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered matches/_form.html.erb (31.1ms)
+  Rendered matches/edit.html.erb within layouts/application (33.8ms)
+Completed 200 OK in 116ms (Views: 92.8ms | ActiveRecord: 13.9ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2017-05-05 14:54:45 -0300
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (30.7ms)
+Completed 200 OK in 108ms (Views: 78.3ms | ActiveRecord: 11.9ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-05-05 14:54:47 -0300
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  [1m[36mUser Load (6.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/_form.html.erb (78.0ms)
+  Rendered events/new.html.erb within layouts/application (82.6ms)
+Completed 200 OK in 149ms (Views: 141.6ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/bets" for 127.0.0.1 at 2017-05-05 14:54:52 -0300
+Processing by BetsController#index as HTML
+  Rendering bets/index.html.erb within layouts/application
+  [1m[36mBet Load (2.6ms)[0m  [1m[34mSELECT "bets".* FROM "bets"[0m
+  Rendered bets/index.html.erb within layouts/application (19.2ms)
+Completed 200 OK in 92ms (Views: 77.7ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/bets/new" for 127.0.0.1 at 2017-05-05 14:54:55 -0300
+Processing by BetsController#new as HTML
+  Rendering bets/new.html.erb within layouts/application
+  [1m[36mMatch Load (6.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTeam Load (1.6ms)[0m  [1m[34mSELECT "teams".* FROM "teams"[0m
+  Rendered bets/_form.html.erb (68.8ms)
+  Rendered bets/new.html.erb within layouts/application (70.1ms)
+Completed 200 OK in 162ms (Views: 152.3ms | ActiveRecord: 8.3ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2017-05-05 14:57:56 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (3.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (2.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (32.6ms)
+Completed 200 OK in 566ms (Views: 508.5ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-05-05 14:57:59 -0300
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  [1m[36mUser Load (5.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/_form.html.erb (83.6ms)
+  Rendered events/new.html.erb within layouts/application (87.7ms)
+Completed 200 OK in 179ms (Views: 167.4ms | ActiveRecord: 10.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-05-05 14:58:08 -0300
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"L+0H3hpJaTbV8BFKlNbv+RwUHxl3U9oP4p/lXXwRczJxh9OIRITjf0uzZ1c39KcCXKuyAjbmitYgB+IsVQgjnQ==", "event"=>{"event_type"=>"sadsadasda", "user_id"=>"4", "private"=>"0", "date_start(1i)"=>"2017", "date_start(2i)"=>"5", "date_start(3i)"=>"5", "date_end(1i)"=>"2017", "date_end(2i)"=>"5", "date_end(3i)"=>"4"}, "commit"=>"Create Event"}
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.3ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 68ms (ActiveRecord: 2.4ms)
+
+
+  
+NoMethodError (undefined method `date_start_before_date_end' for #<Event:0x007f3416331ef8>
+Did you mean?  date_start_before_date_end?
+               date_start_before_type_cast):
+  
+app/controllers/events_controller.rb:30:in `block in create'
+app/controllers/events_controller.rb:29:in `create'
+  Rendering /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (22.4ms)
+  Rendering /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendering /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.7ms)
+  Rendered /home/pablo/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (71.4ms)
+Started GET "/events" for 127.0.0.1 at 2017-05-05 14:58:25 -0300
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (27.5ms)
+Completed 200 OK in 134ms (Views: 117.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-05-05 14:58:37 -0300
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  [1m[36mUser Load (5.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/_form.html.erb (55.7ms)
+  Rendered events/new.html.erb within layouts/application (58.7ms)
+Completed 200 OK in 120ms (Views: 106.1ms | ActiveRecord: 8.2ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-05-05 14:58:53 -0300
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EfDRiRxAdfvJ8+VR1oZSrvsnk9PTul6ne3lsdILQn0ZPmgXfQo3/slewk0x1pBpVu5g+yJIPDn654WsFq8nP6Q==", "event"=>{"event_type"=>"sdadaedfeadaedasdasdsadae", "user_id"=>"4", "private"=>"0", "date_start(1i)"=>"2017", "date_start(2i)"=>"5", "date_start(3i)"=>"5", "date_end(1i)"=>"2017", "date_end(2i)"=>"5", "date_end(3i)"=>"4"}, "commit"=>"Create Event"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering events/new.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/_form.html.erb (12.1ms)
+  Rendered events/new.html.erb within layouts/application (17.4ms)
+Completed 200 OK in 112ms (Views: 82.9ms | ActiveRecord: 8.6ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2017-05-05 14:59:17 -0300
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 88ms (Views: 86.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-05-05 14:59:19 -0300
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/_form.html.erb (16.2ms)
+  Rendered events/new.html.erb within layouts/application (24.2ms)
+Completed 200 OK in 90ms (Views: 88.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2017-05-05 14:59:26 -0300
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"LolIvsbbu9bwcc74jG3XiEZfMNbid2niPyfwMDIIOjqjAMvRFGDo+STe/iVtnxeWzus+M5n9fguIdXLyDFV+2A==", "event"=>{"event_type"=>"sadasdasdasda", "user_id"=>"2", "private"=>"0", "date_start(1i)"=>"2017", "date_start(2i)"=>"5", "date_start(3i)"=>"5", "date_end(1i)"=>"2017", "date_end(2i)"=>"5", "date_end(3i)"=>"5"}, "commit"=>"Create Event"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "events" ("event_type", "private", "date_start", "date_end", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["event_type", "sadasdasdasda"], ["private", false], ["date_start", Fri, 05 May 2017], ["date_end", Fri, 05 May 2017], ["created_at", 2017-05-05 17:59:26 UTC], ["updated_at", 2017-05-05 17:59:26 UTC], ["user_id", 2]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/events/2
+Completed 302 Found in 14ms (ActiveRecord: 7.8ms)
+
+
+Started GET "/events/2" for 127.0.0.1 at 2017-05-05 14:59:26 -0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 73ms (Views: 67.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/events/2/edit" for 127.0.0.1 at 2017-05-05 14:59:28 -0300
+Processing by EventsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/edit.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/_form.html.erb (12.7ms)
+  Rendered events/edit.html.erb within layouts/application (18.7ms)
+Completed 200 OK in 98ms (Views: 85.3ms | ActiveRecord: 0.7ms)
+
+
+Started PATCH "/events/2" for 127.0.0.1 at 2017-05-05 14:59:31 -0300
+Processing by EventsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"HZ2i8K8Ry7h4q/WI1HZmCpU2qk2oBI05Vi9ju4uHO2KqP/92k63dfwYMS0PelvV4wCJQ82pKQD1+NL+JcOVGGQ==", "event"=>{"event_type"=>"sadasdasdasda", "user_id"=>"2", "private"=>"0", "date_start(1i)"=>"2017", "date_start(2i)"=>"5", "date_start(3i)"=>"5", "date_end(1i)"=>"2017", "date_end(2i)"=>"5", "date_end(3i)"=>"6"}, "commit"=>"Update Event", "id"=>"2"}
+  [1m[36mEvent Load (2.8ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (1.4ms)[0m  [1m[33mUPDATE "events" SET "date_end" = $1, "updated_at" = $2 WHERE "events"."id" = $3[0m  [["date_end", Sat, 06 May 2017], ["updated_at", 2017-05-05 17:59:31 UTC], ["id", 2]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/events/2
+Completed 302 Found in 17ms (ActiveRecord: 7.0ms)
+
+
+Started GET "/events/2" for 127.0.0.1 at 2017-05-05 14:59:31 -0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 75ms (Views: 69.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/2/edit" for 127.0.0.1 at 2017-05-05 14:59:33 -0300
+Processing by EventsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/edit.html.erb within layouts/application
+  [1m[36mUser Load (4.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/_form.html.erb (15.0ms)
+  Rendered events/edit.html.erb within layouts/application (22.3ms)
+Completed 200 OK in 84ms (Views: 75.5ms | ActiveRecord: 4.8ms)
+
+
+Started PATCH "/events/2" for 127.0.0.1 at 2017-05-05 14:59:35 -0300
+Processing by EventsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rBoHlD/VCsiWJSN/+WMhVSQQ1FfHg1s4NeeAM8wvjXEbuFoSA2kcD+iCnbTzg7IncQQu6QXNljwd/FwBN03wCg==", "event"=>{"event_type"=>"sadasdasdasda", "user_id"=>"2", "private"=>"0", "date_start(1i)"=>"2017", "date_start(2i)"=>"5", "date_start(3i)"=>"5", "date_end(1i)"=>"2017", "date_end(2i)"=>"5", "date_end(3i)"=>"2"}, "commit"=>"Update Event", "id"=>"2"}
+  [1m[36mEvent Load (4.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (1.9ms)[0m  [1m[31mROLLBACK[0m
+  Rendering events/edit.html.erb within layouts/application
+  [1m[36mUser Load (5.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/_form.html.erb (17.0ms)
+  Rendered events/edit.html.erb within layouts/application (18.4ms)
+Completed 200 OK in 105ms (Views: 86.8ms | ActiveRecord: 12.5ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2017-05-05 14:59:37 -0300
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 83ms (Views: 81.5ms | ActiveRecord: 0.4ms)
+
+

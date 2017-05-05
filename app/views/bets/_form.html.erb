@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= f.label :user_id %>
-    <%= f.select :used_id, User.all.collect {|user| [user.id]}, {include_blank: true}, {required: true} %>
+    <%= f.select :user_id, User.all.collect {|user| [user.id]}, {include_blank: true}, {required: true} %>
   </div>
 
   <div class="field">
