@@ -3215,3 +3215,184 @@ Processing by EventsController#index as HTML
 Completed 200 OK in 83ms (Views: 81.5ms | ActiveRecord: 0.4ms)
 
 
+Started GET "/matches" for 127.0.0.1 at 2017-05-09 10:03:52 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (34.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MatchesController#index as HTML
+  Rendering matches/index.html.erb within layouts/application
+  [1m[36mMatch Load (90.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  Rendered matches/index.html.erb within layouts/application (215.4ms)
+Completed 200 OK in 981ms (Views: 738.2ms | ActiveRecord: 175.5ms)
+
+
+Started GET "/matches/new" for 127.0.0.1 at 2017-05-09 10:03:57 -0300
+Processing by MatchesController#new as HTML
+  Rendering matches/new.html.erb within layouts/application
+  [1m[36mEvent Load (27.9ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered matches/_form.html.erb (278.2ms)
+  Rendered matches/new.html.erb within layouts/application (310.2ms)
+Completed 200 OK in 503ms (Views: 331.9ms | ActiveRecord: 38.9ms)
+
+
+Started POST "/matches" for 127.0.0.1 at 2017-05-09 10:04:08 -0300
+Processing by MatchesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gu4StMOFtatnf7wfaqo0bENSloNyj9eSlcvc8k6lx6C60XaVAZCIi1vc8rO4Zq9iFdChqEngI4cdP/DbmspjTw==", "match"=>{"event_id"=>"2", "match_date(1i)"=>"2017", "match_date(2i)"=>"5", "match_date(3i)"=>"9", "bet_date(1i)"=>"2017", "bet_date(2i)"=>"5", "bet_date(3i)"=>"8", "name"=>"21312312", "state"=>"1321312321"}, "commit"=>"Create Match"}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (6.0ms)[0m  [1m[32mINSERT INTO "matches" ("match_date", "bet_date", "name", "state", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["match_date", Tue, 09 May 2017], ["bet_date", Mon, 08 May 2017], ["name", "21312312"], ["state", 1321312321], ["created_at", 2017-05-09 13:04:08 UTC], ["updated_at", 2017-05-09 13:04:08 UTC], ["event_id", 2]]
+  [1m[35m (18.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/matches/3
+Completed 302 Found in 86ms (ActiveRecord: 25.6ms)
+
+
+Started GET "/matches/3" for 127.0.0.1 at 2017-05-09 10:04:08 -0300
+Processing by MatchesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering matches/show.html.erb within layouts/application
+  Rendered matches/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 93ms (Views: 68.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/matches" for 127.0.0.1 at 2017-05-09 10:04:10 -0300
+Processing by MatchesController#index as HTML
+  Rendering matches/index.html.erb within layouts/application
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  Rendered matches/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 72ms (Views: 68.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/bets" for 127.0.0.1 at 2017-05-09 10:04:13 -0300
+Processing by BetsController#index as HTML
+  Rendering bets/index.html.erb within layouts/application
+  [1m[36mBet Load (29.8ms)[0m  [1m[34mSELECT "bets".* FROM "bets"[0m
+  Rendered bets/index.html.erb within layouts/application (52.7ms)
+Completed 200 OK in 139ms (Views: 83.6ms | ActiveRecord: 32.3ms)
+
+
+Started GET "/bets/new" for 127.0.0.1 at 2017-05-09 10:04:15 -0300
+Processing by BetsController#new as HTML
+  Rendering bets/new.html.erb within layouts/application
+  [1m[36mMatch Load (2.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  [1m[36mUser Load (17.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTeam Load (10.7ms)[0m  [1m[34mSELECT "teams".* FROM "teams"[0m
+  Rendered bets/_form.html.erb (177.5ms)
+  Rendered bets/new.html.erb within layouts/application (179.1ms)
+Completed 200 OK in 306ms (Views: 265.1ms | ActiveRecord: 37.0ms)
+
+
+Started POST "/bets" for 127.0.0.1 at 2017-05-09 10:04:24 -0300
+Processing by BetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wppTRzaY7t/ZmDx4vuLWxJgC4u35F4tIIG7+MDUqXMeCCn+4sacBJR+l1oZFto551tL490jOZ6rbb80BitXlBQ==", "bet"=>{"ammount"=>"122321", "bet_state"=>"1", "match_id"=>"3", "user_id"=>"4", "team_id"=>"1"}, "commit"=>"Create Bet"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.5ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.5ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering bets/new.html.erb within layouts/application
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTeam Load (0.4ms)[0m  [1m[34mSELECT "teams".* FROM "teams"[0m
+  Rendered bets/_form.html.erb (14.2ms)
+  Rendered bets/new.html.erb within layouts/application (17.5ms)
+Completed 200 OK in 114ms (Views: 79.8ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/bets" for 127.0.0.1 at 2017-05-09 10:05:28 -0300
+Processing by BetsController#index as HTML
+  Rendering bets/index.html.erb within layouts/application
+  [1m[36mBet Load (0.7ms)[0m  [1m[34mSELECT "bets".* FROM "bets"[0m
+  Rendered bets/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 70ms (Views: 68.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/matches" for 127.0.0.1 at 2017-05-09 10:05:33 -0300
+Processing by MatchesController#index as HTML
+  Rendering matches/index.html.erb within layouts/application
+  [1m[36mMatch Load (1.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  Rendered matches/index.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 100ms (Views: 97.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/matches/3/edit" for 127.0.0.1 at 2017-05-09 10:05:36 -0300
+Processing by MatchesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mMatch Load (1.4ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering matches/edit.html.erb within layouts/application
+  [1m[36mEvent Load (5.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered matches/_form.html.erb (22.5ms)
+  Rendered matches/edit.html.erb within layouts/application (30.2ms)
+Completed 200 OK in 165ms (Views: 100.5ms | ActiveRecord: 7.2ms)
+
+
+Started PATCH "/matches/3" for 127.0.0.1 at 2017-05-09 10:05:43 -0300
+Processing by MatchesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"scDJFO33TgWQg23RWcflAcd970DofqD9G8aARXMXj8+pDtYR9K7dSH04dQTVHUa5KXs+a7I6+1pONqyOVATZYg==", "match"=>{"event_id"=>"2", "match_date(1i)"=>"2017", "match_date(2i)"=>"5", "match_date(3i)"=>"11", "bet_date(1i)"=>"2017", "bet_date(2i)"=>"5", "bet_date(3i)"=>"11", "name"=>"21312312", "state"=>"1321312321"}, "commit"=>"Update Match", "id"=>"3"}
+  [1m[36mMatch Load (3.2ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (2.8ms)[0m  [1m[33mUPDATE "matches" SET "match_date" = $1, "bet_date" = $2, "updated_at" = $3 WHERE "matches"."id" = $4[0m  [["match_date", Thu, 11 May 2017], ["bet_date", Thu, 11 May 2017], ["updated_at", 2017-05-09 13:05:43 UTC], ["id", 3]]
+  [1m[35m (41.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/matches/3
+Completed 302 Found in 58ms (ActiveRecord: 47.8ms)
+
+
+Started GET "/matches/3" for 127.0.0.1 at 2017-05-09 10:05:43 -0300
+Processing by MatchesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mMatch Load (1.3ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering matches/show.html.erb within layouts/application
+  Rendered matches/show.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 89ms (Views: 83.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/bets" for 127.0.0.1 at 2017-05-09 10:05:46 -0300
+Processing by BetsController#index as HTML
+  Rendering bets/index.html.erb within layouts/application
+  [1m[36mBet Load (2.4ms)[0m  [1m[34mSELECT "bets".* FROM "bets"[0m
+  Rendered bets/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 73ms (Views: 66.6ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/bets/new" for 127.0.0.1 at 2017-05-09 10:05:49 -0300
+Processing by BetsController#new as HTML
+  Rendering bets/new.html.erb within layouts/application
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTeam Load (0.3ms)[0m  [1m[34mSELECT "teams".* FROM "teams"[0m
+  Rendered bets/_form.html.erb (14.6ms)
+  Rendered bets/new.html.erb within layouts/application (20.1ms)
+Completed 200 OK in 99ms (Views: 96.3ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/bets" for 127.0.0.1 at 2017-05-09 10:05:56 -0300
+Processing by BetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PGllmZphZwhKszfTOJeIHQ02YffJeWXmNAboaGsfUq98+UlmHV6I8oyO3S3Dw9CgQ+Z77XigiQTPB9tZ1ODrbQ==", "bet"=>{"ammount"=>"123132", "bet_state"=>"1", "match_id"=>"3", "user_id"=>"4", "team_id"=>"1"}, "commit"=>"Create Bet"}
+  [1m[35m (4.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.3ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (56.2ms)[0m  [1m[32mINSERT INTO "bets" ("ammount", "bet_state", "created_at", "updated_at", "match_id", "user_id", "team_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["ammount", 123132], ["bet_state", 1], ["created_at", 2017-05-09 13:05:56 UTC], ["updated_at", 2017-05-09 13:05:56 UTC], ["match_id", 3], ["user_id", 4], ["team_id", 1]]
+  [1m[35m (3.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/bets/2
+Completed 302 Found in 79ms (ActiveRecord: 65.1ms)
+
+
+Started GET "/bets/2" for 127.0.0.1 at 2017-05-09 10:05:56 -0300
+Processing by BetsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBet Load (1.6ms)[0m  [1m[34mSELECT  "bets".* FROM "bets" WHERE "bets"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bets/show.html.erb within layouts/application
+  Rendered bets/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 88ms (Views: 59.9ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/bets" for 127.0.0.1 at 2017-05-09 10:05:58 -0300
+Processing by BetsController#index as HTML
+  Rendering bets/index.html.erb within layouts/application
+  [1m[36mBet Load (0.4ms)[0m  [1m[34mSELECT "bets".* FROM "bets"[0m
+  Rendered bets/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 80ms (Views: 76.5ms | ActiveRecord: 0.4ms)
+
+
