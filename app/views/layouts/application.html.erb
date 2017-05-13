@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Apuestas GGEZ</title>
+    <title>GGEZ Bets</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -21,16 +21,16 @@
           <div class="name">
             Bienvenido, <%= link_to current_user.first_name, current_user %>
           </div>
-          <%= link_to 'Cerrar sesión', session_path, method: :delete %>
+          <%= link_to 'Logout', session_path, method: :delete %>
         <% else %>
-          <%= link_to 'Iniciar sesión', new_session_path %> or
-          <%= link_to 'Registrarse', new_user_path %>
+          <%= link_to 'Login', new_session_path %> or
+          <%= link_to 'Register', new_user_path %>
         <% end %>
       </div>
 
       <nav id="main_menu">
-        <%= link_to 'Usuarios', users_path %>
-        <%= link_to 'Eventos', events_path %>
+        <%= link_to 'Users', users_path %>
+        <%= link_to 'Events', events_path %>
       </nav>
 
     </header>
@@ -48,7 +48,7 @@
 
     <footer>
       <hr>
-      <div id="project_name">© Apuestas GGEZ</div>
+      <div id="project_name">© GGEZ Bets</div>
       <div id="license">
         <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
           <img alt="Creative Common License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
