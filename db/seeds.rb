@@ -28,6 +28,42 @@ User.destroy_all
   )
 end
 
+User.create(
+  email: "pfnieto@uc.cl",
+  first_name: "Pablo",
+  last_name: "Nieto",
+  password: "123456",
+  coins: 100,
+  role: 0
+)
+
+User.create(
+  email: "alopez7@uc.cl",
+  first_name: "Antonio",
+  last_name: "Lopez",
+  password: "123456",
+  coins: 100,
+  role: 0
+)
+
+User.create(
+  email: "user@user.com",
+  first_name: "Usuario",
+  last_name: "Usuarin",
+  password: "123456",
+  coins: 50,
+  role: 1
+)
+
+User.create(
+  email: "gestor@gestor.com",
+  first_name: "Gestor",
+  last_name: "Gestorin",
+  password: "123456",
+  coins: 60,
+  role: 2
+)
+
 # Create 10 teams
 10.times do
   Team.create(
@@ -37,6 +73,7 @@ end
 end
 
 user_ids = User.pluck(:id)
+gestor_ids = User.where(role: 2).pluck(:id)
 # Create 10 events
 10.times do
   Event.create(
@@ -44,7 +81,7 @@ user_ids = User.pluck(:id)
     private: Faker::Boolean.boolean,
     date_start: Faker::Date.backward(5),
     date_end: Faker::Date.forward(20),
-    user_id: user_ids.sample
+    user_id: gestor_ids.sample
   )
 end
 event_ids = Event.pluck(:id)

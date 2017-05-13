@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+  #Role 0: Admin
+  #Role 1: Normal user
+  #Role 2: Event manager
   has_secure_password
-  
+
   validates :coins, :numericality => {:greater_than_or_equal_to => 0}
   validates :role, :numericality => {:greater_than_or_equal_to => 0}
   validates :password, presence: true, length: { minimum: 5 },

@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
+  include Secured
+
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :can_create_events?, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
