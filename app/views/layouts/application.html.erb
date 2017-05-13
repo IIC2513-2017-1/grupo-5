@@ -15,9 +15,9 @@
           <div class="name">
             Bienvenido, <%= current_user.first_name %>
           </div>
-          <%= link_to 'Logout', session_path, method: :delete %>
+          <%= link_to 'Cerrar sesión', session_path, method: :delete %>
         <% else %>
-          <%= link_to 'Login', new_session_path %>
+          <%= link_to 'Iniciar sesión', new_session_path %>
         <% end %>
       </div>
     </header>
