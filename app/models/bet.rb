@@ -6,7 +6,6 @@ class Bet < ApplicationRecord
   validates :team_id, presence: true, allow_blank: false
   validate :bet_before_expiration_date?
   validate :has_suf_money?
-  #before_action :withdraw_coins
 
   belongs_to :user
   belongs_to :match
@@ -26,12 +25,6 @@ class Bet < ApplicationRecord
     end
   end
 
-  #Ve le quita los coins apostados al jugador
-  def withdraw_coins
-    current_user = User.find(user_id)
-    current_user.update("coins" => current_user.coins - ammount)
-    current_user.save
-  end
 
 
 end
