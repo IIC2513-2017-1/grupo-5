@@ -17,11 +17,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :bet_state %>
-    <%= f.number_field :bet_state, required: true %>
-  </div>
-
-  <div class="field">
     <%= f.label :match_id %>
     <%= f.select :match_id, Match.all.collect {|match| [match.id]}, {include_blank: true}, {required: true} %>
   </div>
