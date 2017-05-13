@@ -1,6 +1,7 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
 
+
   # GET /bets
   # GET /bets.json
   def index
@@ -62,6 +63,7 @@ class BetsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_bet
       @bet = Bet.find(params[:id])

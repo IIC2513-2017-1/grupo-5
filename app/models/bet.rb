@@ -5,14 +5,33 @@ class Bet < ApplicationRecord
   validates :user_id, presence: true, allow_blank: false
   validates :team_id, presence: true, allow_blank: false
   validate :bet_before_expiration_date?
+  validate :has_suf_money?
+  #before_action :withdraw_coins
+
   belongs_to :user
   belongs_to :match
   belongs_to :team
 
   def bet_before_expiration_date?
     current_match = Match.find(match_id)
-    if current_match.bet_date.day < Time.now.day
+    if current_match.bet_date < Time.now
       errors.add :base, "Match has already closed"
     end
   end
+
+  def has_suf_money?
+    current_user = User.find(user_id)
+    if current_user.coins < ammount
+      errors.add :base, "Not enought coins"
+    end
+  end
+
+  #Ve le quita los coins apostados al jugador
+  def withdraw_coins
+    current_user = User.find(user_id)
+    current_user.update("coins" => current_user.coins - ammount)
+    current_user.save
+  end
+
+
 end
