@@ -20,11 +20,8 @@ class Bet < ApplicationRecord
 
   def has_suf_money?
     current_user = User.find(user_id)
-    if current_user.coins < ammount
+    if current_user.coins - ammount < 0
       errors.add :base, "Not enought coins"
     end
   end
-
-
-
 end

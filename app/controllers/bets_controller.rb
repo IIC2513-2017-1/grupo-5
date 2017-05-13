@@ -1,6 +1,7 @@
 class BetsController < ApplicationController
-  before_action :set_bet, only: [:show, :edit, :update, :destroy]
-  before_action :has_suf_money?, only: [:create]
+  before_action :set_bet, only: [:show, :edit, :update, :destroy, :return_coins]
+  after_action :withdraw_coins, only: [:create]
+  after_action :return_coins, only: [:destroy]
 
   # GET /bets
   # GET /bets.json
@@ -26,7 +27,6 @@ class BetsController < ApplicationController
   # POST /bets.json
   def create
     @bet = Bet.new(bet_params)
-    withdraw_coins
     respond_to do |format|
       if @bet.save
         format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
@@ -67,22 +67,25 @@ class BetsController < ApplicationController
   def withdraw_coins
     @user = User.find(bet_params[:user_id])
     coins = @user.coins - Integer(bet_params[:ammount])
-    @user.update_attribute(:coins, coins)
+    if coins > 0
+      @user.update_attribute(:coins, coins)
+    end
   end
 
-  def has_suf_money?
-    @user = User.find(bet_params[:user_id])
-    if @user.coins < Integer(bet_params[:ammount])
-      return false
-    end
-    return true
+  #devuelve los coins apostados al jugador
+  def return_coins
+    @user = User.find(@bet.user_id)
+    coins = @user.coins + @bet.ammount
+    @user.update_attribute(:coins, coins)
   end
 
   #Recalcula los coins apostados en un update al jugador
   def recalculate_coins
     @user = User.find(bet_params[:user_id])
     coins = @user.coins - Integer(bet_params[:ammount]) + @bet.ammount
-    @user.update_attribute(:coins, coins)
+    if coins > 0
+      @user.update_attribute(:coins, coins)
+    end
   end
 
   private
@@ -94,6 +97,6 @@ class BetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bet_params
-      params.require(:bet).permit(:ammount, :bet_state, :match_id, :user_id, :team_id)
+      params.require(:bet).permit(:ammount, :match_id, :user_id, :team_id).merge(bet_state: 0)
     end
 end
