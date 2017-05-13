@@ -1,6 +1,6 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
-  before_action :has_suf_money?, only: [:create]
+  after_action :withdraw_coins, only: [:create]
 
   # GET /bets
   # GET /bets.json
@@ -67,15 +67,9 @@ class BetsController < ApplicationController
   def withdraw_coins
     @user = User.find(bet_params[:user_id])
     coins = @user.coins - Integer(bet_params[:ammount])
-    @user.update_attribute(:coins, coins)
-  end
-
-  def has_suf_money?
-    @user = User.find(bet_params[:user_id])
-    if @user.coins < Integer(bet_params[:ammount])
-      return false
+    if coins > 0
+      @user.update_attribute(:coins, coins)
     end
-    return true
   end
 
   #Recalcula los coins apostados en un update al jugador
