@@ -1,4 +1,4 @@
-<%= form_for(match) do |f| %>
+<%= form_for [@event, @match] do |f| %>
   <% if match.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(match.errors.count, "error") %> prohibited this match from being saved:</h2>
@@ -10,11 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :event_id %>
-    <%= f.select :event_id, Event.all.collect {|event| [event.id]}, {include_blank: true}, {required: true} %>
-  </div>
 
   <div class="field">
     <%= f.label :match_date %>
@@ -29,11 +24,6 @@
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name, default: "" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :state %>
-    <%= f.number_field :state, default: 0, required: true %>
   </div>
 
   <div class="actions">

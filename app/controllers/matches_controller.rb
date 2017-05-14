@@ -14,11 +14,14 @@ class MatchesController < ApplicationController
 
   # GET /matches/new
   def new
+    @event = Event.find(params[:event_id])
     @match = Match.new
   end
 
   # GET /matches/1/edit
   def edit
+    @event = Event.find(params[:event_id])
+    @match = Match.find(params[:id])
   end
 
   # POST /matches
@@ -28,8 +31,8 @@ class MatchesController < ApplicationController
 
     respond_to do |format|
       if @match.save
-        format.html { redirect_to @match, notice: 'Match was successfully created.' }
-        format.json { render :show, status: :created, location: @match }
+        format.html { redirect_to event_matches_path(@match.event_id), notice: 'Match was successfully created.' }
+        format.json { render :show, status: :created, location: event_matches_path(@match.event_id) }
       else
         format.html { render :new }
         format.json { render json: @match.errors, status: :unprocessable_entity }
@@ -40,6 +43,8 @@ class MatchesController < ApplicationController
   # PATCH/PUT /matches/1
   # PATCH/PUT /matches/1.json
   def update
+    @match = Match.edit(match_params)
+
     respond_to do |format|
       if @match.update(match_params)
         format.html { redirect_to @match, notice: 'Match was successfully updated.' }
@@ -73,6 +78,6 @@ class MatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
-      params.require(:match).permit(:event_id, :match_date, :bet_date, :name, :state)
+      params.require(:match).permit(:match_date, :bet_date, :name).merge(event_id: params[:event_id], state: 0)
     end
 end
