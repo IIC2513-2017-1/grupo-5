@@ -59,9 +59,11 @@ class MatchesController < ApplicationController
   # DELETE /matches/1
   # DELETE /matches/1.json
   def destroy
+    Participation.where(match_id: @match.id).destroy_all
+    Bet.where(match_id: @match.id).destroy_all
     @match.destroy
     respond_to do |format|
-      format.html { redirect_to matches_url, notice: 'Match was successfully destroyed.' }
+      format.html { redirect_to event_matches_url(params[:event_id]), notice: 'Match was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

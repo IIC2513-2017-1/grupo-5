@@ -22,7 +22,7 @@
         <td><%= match.state %></td>
         <td><%= link_to 'Show', event_match_path(match.event_id, match.id) %></td>
         <td><%= link_to 'Edit', edit_event_match_path(match.event_id, match.id) %></td>
-        <td><%= link_to 'Destroy', event_match_path(match.event_id, match.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', event_match_path(match.event_id, match.id), method: :delete, data: { confirm: 'Are you sure? This will destroy all the match bets' } %></td>
       </tr>
     <% end %>
   </tbody>
