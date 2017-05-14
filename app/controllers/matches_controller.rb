@@ -43,12 +43,10 @@ class MatchesController < ApplicationController
   # PATCH/PUT /matches/1
   # PATCH/PUT /matches/1.json
   def update
-    @match = Match.edit(match_params)
-
     respond_to do |format|
       if @match.update(match_params)
-        format.html { redirect_to @match, notice: 'Match was successfully updated.' }
-        format.json { render :show, status: :ok, location: @match }
+        format.html { redirect_to event_matches_path(@match.event_id), notice: 'Match was successfully updated.' }
+        format.json { render :show, status: :ok, location: event_matches_path(@match.event_id) }
       else
         format.html { render :edit }
         format.json { render json: @match.errors, status: :unprocessable_entity }
