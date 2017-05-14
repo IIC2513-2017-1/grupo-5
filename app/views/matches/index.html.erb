@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    <% @matches.each do |match| %>
+    <% @matches.where("event_id = ?", params[:event_id]).each do |match| %>
       <tr>
         <td><%= match.match_date %></td>
         <td><%= match.bet_date %></td>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Match', new_event_match_path(:id) %>
+<%= link_to 'New Match', new_event_match_path(params[:event_id]), event_id: params[:event_id] %>
