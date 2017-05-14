@@ -20,5 +20,5 @@
   <%= @match.state %>
 </p>
 
-<%= link_to 'Edit', edit_match_path(@match) %> |
-<%= link_to 'Back', matches_path %>
+<%= link_to 'Edit', edit_event_match_path(@match.event_id, @match) %> |
+<%= link_to 'Back', event_matches_path(@match.event_id) %>

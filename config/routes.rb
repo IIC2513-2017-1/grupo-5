@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :teams
   resources :bets
-  resources :matches
-  resources :events
+  resources :events do
+    resources :matches
+  end
   resources :users
   resources :participations
   resource :session, only: [:new, :create, :destroy]

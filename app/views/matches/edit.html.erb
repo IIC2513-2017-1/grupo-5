@@ -2,5 +2,5 @@
 
 <%= render 'form', match: @match %>
 
-<%= link_to 'Show', @match %> |
-<%= link_to 'Back', matches_path %>
+<%= link_to 'Show', event_match_path(@match.event_id, @match) %> |
+<%= link_to 'Back', event_matches_path(@match.event_id) %>
