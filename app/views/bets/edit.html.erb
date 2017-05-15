@@ -1,6 +1,6 @@
 <h1>Editing Bet</h1>
 
-<%= render 'form', bet: @bet %>
+<%= render 'form', user: @user, bet: @bet %>
 
-<%= link_to 'Show', @bet %> |
-<%= link_to 'Back', bets_path %>
+<%= link_to 'Show', user_bet_path(@bet.user_id, @bet) %> |
+<%= link_to 'Back', user_bets_path(@bet.user_id) %>
