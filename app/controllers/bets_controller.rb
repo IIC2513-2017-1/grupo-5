@@ -1,7 +1,7 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy, :return_coins]
-  after_action :withdraw_coins, only: [:create]
-  after_action :return_coins, only: [:destroy]
+  #after_action :withdraw_coins, only: [:create]
+  #after_action :return_coins, only: [:destroy]
 
   # GET /bets
   # GET /bets.json
@@ -16,21 +16,25 @@ class BetsController < ApplicationController
 
   # GET /bets/new
   def new
+    @user = User.find(params[:user_id])
     @bet = Bet.new
   end
 
   # GET /bets/1/edit
   def edit
+    @user = User.find(params[:user_id])
+    @bet = Bet.find(params[:id])
   end
 
   # POST /bets
   # POST /bets.json
   def create
     @bet = Bet.new(bet_params)
+
     respond_to do |format|
       if @bet.save
-        format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
-        format.json { render :show, status: :created, location: @bet }
+        format.html { redirect_to user_bets_path(@bet.user_id), notice: 'Bet was successfully created.' }
+        format.json { render :show, status: :created, location: user_bets_path(@bet.user_id) }
       else
         format.html { render :new }
         format.json { render json: @bet.errors, status: :unprocessable_entity }
@@ -43,8 +47,8 @@ class BetsController < ApplicationController
   def update
     respond_to do |format|
       if @bet.update(bet_params)
-        format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
-        format.json { render :show, status: :ok, location: @bet }
+        format.html { redirect_to user_bets_path(@bet.user_id), notice: 'Bet was successfully updated.' }
+        format.json { render :show, status: :ok, location: user_bets_path(@bet.user_id) }
       else
         format.html { render :edit }
         format.json { render json: @bet.errors, status: :unprocessable_entity }
@@ -57,7 +61,7 @@ class BetsController < ApplicationController
   def destroy
     @bet.destroy
     respond_to do |format|
-      format.html { redirect_to bets_url, notice: 'Bet was successfully destroyed.' }
+      format.html { redirect_to user_bets_url(params[:user_id]), notice: 'Bet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -97,6 +101,6 @@ class BetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bet_params
-      params.require(:bet).permit(:ammount, :match_id, :user_id, :team_id).merge(bet_state: 0)
+      params.require(:bet).permit(:ammount, :match_id, :team_id).merge(bet_state: 0, user_id: params[:user_id])
     end
 end

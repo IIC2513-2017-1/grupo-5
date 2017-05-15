@@ -16,9 +16,9 @@
       <tr>
         <td><%= bet.ammount %></td>
         <td><%= bet.bet_state %></td>
-        <td><%= link_to 'Show', bet %></td>
-        <td><%= link_to 'Edit', edit_bet_path(bet) %></td>
-        <td><%= link_to 'Destroy', bet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user_bet_path(bet.user_id, bet.id) %></td>
+        <td><%= link_to 'Edit', edit_user_bet_path(bet.user_id, bet.id) %></td>
+        <td><%= link_to 'Destroy', user_bet_path(bet.user_id, bet.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Bet', new_bet_path %>
+<%= link_to 'New Bet', new_user_bet_path(params[:user_id]), user_id: params[:user_id]%>
