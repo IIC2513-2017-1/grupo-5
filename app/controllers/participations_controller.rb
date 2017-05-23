@@ -43,9 +43,11 @@ class ParticipationsController < ApplicationController
   end
 
   def destroy
+    @participation = Participation.find(params[:id])
+    @match = Match.where(id: @participation.match_id).first
     @participation.destroy
     respond_to do |format|
-      format.html { redirect_to participations_url, notice: 'Participation was successfully destroyed.' }
+      format.html { redirect_to @match, notice: 'Participation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
