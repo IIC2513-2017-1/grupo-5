@@ -16,14 +16,11 @@ class BetsController < ApplicationController
 
   # GET /bets/new
   def new
-    @user = User.find(params[:user_id])
     @bet = Bet.new
   end
 
   # GET /bets/1/edit
   def edit
-    @user = User.find(params[:user_id])
-    @bet = Bet.find(params[:id])
   end
 
   # POST /bets
@@ -33,8 +30,8 @@ class BetsController < ApplicationController
 
     respond_to do |format|
       if @bet.save
-        format.html { redirect_to user_bets_path(@bet.user_id), notice: 'Bet was successfully created.' }
-        format.json { render :show, status: :created, location: user_bets_path(@bet.user_id) }
+        format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
+        format.json { render :show, status: :created, location: @bet }
       else
         format.html { render :new }
         format.json { render json: @bet.errors, status: :unprocessable_entity }
@@ -47,8 +44,8 @@ class BetsController < ApplicationController
   def update
     respond_to do |format|
       if @bet.update(bet_params)
-        format.html { redirect_to user_bets_path(@bet.user_id), notice: 'Bet was successfully updated.' }
-        format.json { render :show, status: :ok, location: user_bets_path(@bet.user_id) }
+        format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
+        format.json { render :show, status: :ok, location: @bet }
       else
         format.html { render :edit }
         format.json { render json: @bet.errors, status: :unprocessable_entity }
@@ -61,36 +58,36 @@ class BetsController < ApplicationController
   def destroy
     @bet.destroy
     respond_to do |format|
-      format.html { redirect_to user_bets_url(params[:user_id]), notice: 'Bet was successfully destroyed.' }
+      format.html { redirect_to bets_url, notice: 'Bet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
 
-  #Le quita los coins apostados al jugador
-  def withdraw_coins
-    @user = User.find(bet_params[:user_id])
-    coins = @user.coins - Integer(bet_params[:ammount])
-    if coins > 0
-      @user.update_attribute(:coins, coins)
-    end
-  end
-
-  #devuelve los coins apostados al jugador
-  def return_coins
-    @user = User.find(@bet.user_id)
-    coins = @user.coins + @bet.ammount
-    @user.update_attribute(:coins, coins)
-  end
-
-  #Recalcula los coins apostados en un update al jugador
-  def recalculate_coins
-    @user = User.find(bet_params[:user_id])
-    coins = @user.coins - Integer(bet_params[:ammount]) + @bet.ammount
-    if coins > 0
-      @user.update_attribute(:coins, coins)
-    end
-  end
+  # #Le quita los coins apostados al jugador
+  # def withdraw_coins
+  #   @user = User.find(bet_params[:user_id])
+  #   coins = @user.coins - Integer(bet_params[:ammount])
+  #   if coins > 0
+  #     @user.update_attribute(:coins, coins)
+  #   end
+  # end
+  #
+  # #devuelve los coins apostados al jugador
+  # def return_coins
+  #   @user = User.find(@bet.user_id)
+  #   coins = @user.coins + @bet.ammount
+  #   @user.update_attribute(:coins, coins)
+  # end
+  #
+  # #Recalcula los coins apostados en un update al jugador
+  # def recalculate_coins
+  #   @user = User.find(bet_params[:user_id])
+  #   coins = @user.coins - Integer(bet_params[:ammount]) + @bet.ammount
+  #   if coins > 0
+  #     @user.update_attribute(:coins, coins)
+  #   end
+  # end
 
   private
 
@@ -101,6 +98,6 @@ class BetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bet_params
-      params.require(:bet).permit(:ammount, :match_id, :team_id).merge(bet_state: 0, user_id: params[:user_id])
+      params.require(:bet).permit(:ammount, :match_id, :team_id).merge(bet_state: 0, user_id: current_user.id)
     end
 end

@@ -14,15 +14,15 @@
   </thead>
 
   <tbody>
-    <% @matches.where("event_id = ?", params[:event_id]).each do |match| %>
+    <% @matches.each do |match| %>
       <tr>
         <td><%= match.match_date %></td>
         <td><%= match.bet_date %></td>
         <td><%= match.name %></td>
         <td><%= match.state %></td>
-        <td><%= link_to 'Show', event_match_path(match.event_id, match.id) %></td>
-        <td><%= link_to 'Edit', edit_event_match_path(match.event_id, match.id) %></td>
-        <td><%= link_to 'Destroy', event_match_path(match.event_id, match.id), method: :delete, data: { confirm: 'Are you sure? This will destroy all the match bets' } %></td>
+        <td><%= link_to 'Show', match %></td>
+        <td><%= link_to 'Edit', edit_match_path(match) %></td>
+        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Match', new_event_match_path(params[:event_id]), event_id: params[:event_id] %>
+<%= link_to 'New Match', new_match_path %>
