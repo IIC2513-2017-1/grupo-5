@@ -54,8 +54,8 @@
         <th>Placings</th>
         <th>Participations ID</th>
         <% Participation.where(match_id: match.id).each do |participation| %>
+          <% t = Team.where(id: participation.team_id).first %>
           <tr>
-            <% t = Team.where(id: participation.team_id).first %>
             <td><%= t.name %></td>
             <td><%= participation.placing %></td>
             <td><%= participation.id %></td>
