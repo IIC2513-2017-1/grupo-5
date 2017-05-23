@@ -14,13 +14,11 @@ class MatchesController < ApplicationController
 
   # GET /matches/new
   def new
-    @event = Event.find(params[:event_id])
     @match = Match.new
   end
 
   # GET /matches/1/edit
   def edit
-    @event = Event.find(params[:event_id])
     @match = Match.find(params[:id])
   end
 
@@ -31,8 +29,8 @@ class MatchesController < ApplicationController
 
     respond_to do |format|
       if @match.save
-        format.html { redirect_to event_matches_path(@match.event_id), notice: 'Match was successfully created.' }
-        format.json { render :show, status: :created, location: event_matches_path(@match.event_id) }
+        format.html { redirect_to @match, notice: 'Match was successfully created.' }
+        format.json { render :show, status: :created, location: @match }
       else
         format.html { render :new }
         format.json { render json: @match.errors, status: :unprocessable_entity }
@@ -45,8 +43,8 @@ class MatchesController < ApplicationController
   def update
     respond_to do |format|
       if @match.update(match_params)
-        format.html { redirect_to event_matches_path(@match.event_id), notice: 'Match was successfully updated.' }
-        format.json { render :show, status: :ok, location: event_matches_path(@match.event_id) }
+        format.html { redirect_to @match, notice: 'Match was successfully updated.' }
+        format.json { render :show, status: :ok, location: @match }
       else
         format.html { render :edit }
         format.json { render json: @match.errors, status: :unprocessable_entity }
@@ -61,7 +59,7 @@ class MatchesController < ApplicationController
     Bet.where(match_id: @match.id).destroy_all
     @match.destroy
     respond_to do |format|
-      format.html { redirect_to event_matches_url(params[:event_id]), notice: 'Match was successfully destroyed.' }
+      format.html { redirect_to matches_url, notice: 'Match was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -78,6 +76,6 @@ class MatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
-      params.require(:match).permit(:match_date, :bet_date, :name).merge(event_id: params[:event_id], state: 0)
+      params.require(:match).permit(:match_date, :bet_date, :name, :event_id).merge(state: 0)
     end
 end

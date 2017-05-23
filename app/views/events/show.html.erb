@@ -25,7 +25,7 @@
   <%= @event.date_end %>
 </p>
 
-<%= link_to 'Matches', event_matches_path(@event) %>
+<!-- <%= link_to 'Matches', event_matches_path(@event) %> -->
 
 <%= link_to 'Edit', edit_event_path(@event) if current_user && current_user.role != 1 %> |
 <%= link_to 'Back', events_path %>
