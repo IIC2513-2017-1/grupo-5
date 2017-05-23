@@ -17,8 +17,40 @@
 
 <p>
   <strong>State:</strong>
-  <%= @match.state %>
+  <%= if @match.state == 0; 'Bets open'
+  elsif @match.state == 1; 'Bets Closed'
+  else ; 'Closed Match'
+  end %>
 </p>
 
+
+<h1>Teams</h1>
+
+<table>
+  <style>
+
+  </style>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Result</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Participation.where(match_id: @match.id).each do |participation| %>
+      <% t = Team.where(id: participation.team_id).first %>
+      <tr>
+        <td><%= t.name %></td>
+        <td><%= if participation.placing == -1; ''
+        else participation.placing
+        end %></td>
+        <td><%= link_to 'Remove', participation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render :partial => 'participations/form', match: @match %>
 <%= link_to 'Edit', edit_match_path %> |
-<%= link_to 'Back', matches_path %>
+<%= link_to 'Event', event_path(@match.event_id) %>

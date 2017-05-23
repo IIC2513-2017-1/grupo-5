@@ -1,0 +1,24 @@
+<% participation = Participation.new %>
+<%= form_for(participation) do |f| %>
+  <% if participation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(participation.errors.count, "error") %> prohibited this participation from being saved:</h2>
+
+      <ul>
+      <% participation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Team %>
+    <%= f.select :team_id, Team.all.collect {|team| [team.name, team.id]}, {include_blank: true}, {required: true} %>
+  </div>
+  <%= f.hidden_field :match_id, :value => @match.id %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

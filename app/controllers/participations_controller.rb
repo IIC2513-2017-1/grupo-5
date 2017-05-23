@@ -24,7 +24,7 @@ class ParticipationsController < ApplicationController
         format.html { redirect_to @match, notice: 'Participation was successfully created.' }
         format.json { render :show, status: :created, location: @match }
       else
-        format.html { render :new }
+        format.html { redirect_to @match, notice: 'The team could not be added.' }
         format.json { render json: @match.errors, status: :unprocessable_entity }
       end
     end
@@ -33,7 +33,7 @@ class ParticipationsController < ApplicationController
   def update
     respond_to do |format|
       if @participation.update(participation_params)
-        format.html { redirect_to @participation, notice: 'Participation was successfully updated.' }
+        format.html { redirect_to @match, notice: 'Participation was successfully updated.' }
         format.json { render :show, status: :ok, location: @participation }
       else
         format.html { render :edit }
@@ -43,9 +43,11 @@ class ParticipationsController < ApplicationController
   end
 
   def destroy
+    @participation = Participation.find(params[:id])
+    @match = Match.where(id: @participation.match_id).first
     @participation.destroy
     respond_to do |format|
-      format.html { redirect_to participations_url, notice: 'Participation was successfully destroyed.' }
+      format.html { redirect_to @match, notice: 'Participation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -58,7 +60,6 @@ class ParticipationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def participation_params
-      params.require(:participation).permit(:match_id, :team_id).merge(placing: -1)
+      params.require(:participation).permit(:match_id, :team_id).merge(placing: 5)
     end
-
 end
