@@ -25,7 +25,44 @@
   <%= @event.date_end %>
 </p>
 
-<!-- <%= link_to 'Matches', event_matches_path(@event) %> -->
+<h1>Matches</h1>
+
+<table>
+  <style>
+
+  </style>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Deadline</th>
+      <th>Start</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Match.where(event_id: @event.id).each do |match| %>
+      <tr>
+        <td><%= match.name %></td>
+        <td><%= match.bet_date %></td>
+        <td><%= match.match_date %></td>
+      </tr>
+      <tr>
+        <th>Team Names</th>
+        <th>Placings</th>
+        <th>Participations ID</th>
+        <% Participation.where(match_id: match.id).each do |participation| %>
+          <tr>
+            <% t = Team.where(id: participation.team_id).first %>
+            <td><%= t.name %></td>
+            <td><%= participation.placing %></td>
+            <td><%= participation.id %></td>
+          </tr>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 
 <%= link_to 'Edit', edit_event_path(@event) if current_user && current_user.role != 1 %> |
 <%= link_to 'Back', events_path %>
