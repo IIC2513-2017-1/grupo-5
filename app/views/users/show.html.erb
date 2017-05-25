@@ -25,5 +25,10 @@
   <%= @user.role %>
 </p>
 
+<p>
+  <strong>Avatar:</strong>
+  <%= image_tag @user.avatar.url(:medium) %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) if current_user && current_user.id == @user.id %> |
 <%= link_to 'Back', users_path %>

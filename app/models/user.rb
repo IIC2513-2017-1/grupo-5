@@ -3,6 +3,7 @@ class User < ApplicationRecord
   #Role 1: Normal user
   #Role 2: Event manager
   has_secure_password
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: ":style/missing.png"
 
   validates :coins, :numericality => {:greater_than_or_equal_to => 0}
   validates :role, :numericality => {:greater_than_or_equal_to => 0}
