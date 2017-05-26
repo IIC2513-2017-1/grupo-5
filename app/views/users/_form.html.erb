@@ -41,14 +41,17 @@
     <%= f.number_field :coins, default: 0, required: true %>
   </div>
 
+  <% if current_user && current_user.role == 0 %>
   <div class="field">
     <%= f.label :role %>
-    <%= f.number_field :role, required: true %>
+    <%= f.number_field :role, required: true, value: 0 %>
   </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :avatar %>
     <%= f.file_field :avatar, as: :file %>
+    Supported files: .png, .jpg, up to 500KB.
   </div>
 
   <div class="actions">
