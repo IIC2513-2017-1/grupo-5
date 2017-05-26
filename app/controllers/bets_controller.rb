@@ -1,7 +1,5 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy, :return_coins]
-  #after_action :withdraw_coins, only: [:create]
-  #after_action :return_coins, only: [:destroy]
 
   # GET /bets
   # GET /bets.json
@@ -27,16 +25,16 @@ class BetsController < ApplicationController
   # POST /bets.json
   def create
     @bet = Bet.new(bet_params)
-
+    @user = User.find(@bet.user_id)
     respond_to do |format|
       if @bet.save
-        format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
+        format.html { redirect_to @user, notice: 'Bet was successfully created.' }
         format.json { render :show, status: :created, location: @bet }
       else
         format.html { render :new }
         format.json { render json: @bet.errors, status: :unprocessable_entity }
       end
-    end
+      end
   end
 
   # PATCH/PUT /bets/1
@@ -56,38 +54,15 @@ class BetsController < ApplicationController
   # DELETE /bets/1
   # DELETE /bets/1.json
   def destroy
+    @user = User.where(id: @bet.user_id).first
+    coins = @user.coins + @bet.ammount
+    @user.update_attribute(:coins, coins)
     @bet.destroy
     respond_to do |format|
-      format.html { redirect_to bets_url, notice: 'Bet was successfully destroyed.' }
+      format.html { redirect_to user_url(@user.id), notice: 'Bet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
-
-
-  # #Le quita los coins apostados al jugador
-  # def withdraw_coins
-  #   @user = User.find(bet_params[:user_id])
-  #   coins = @user.coins - Integer(bet_params[:ammount])
-  #   if coins > 0
-  #     @user.update_attribute(:coins, coins)
-  #   end
-  # end
-  #
-  # #devuelve los coins apostados al jugador
-  # def return_coins
-  #   @user = User.find(@bet.user_id)
-  #   coins = @user.coins + @bet.ammount
-  #   @user.update_attribute(:coins, coins)
-  # end
-  #
-  # #Recalcula los coins apostados en un update al jugador
-  # def recalculate_coins
-  #   @user = User.find(bet_params[:user_id])
-  #   coins = @user.coins - Integer(bet_params[:ammount]) + @bet.ammount
-  #   if coins > 0
-  #     @user.update_attribute(:coins, coins)
-  #   end
-  # end
 
   private
 

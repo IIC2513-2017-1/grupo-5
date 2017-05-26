@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :teams
   resources :events
   resources :matches
-  resources :users
   resources :bets
+  resources :users
   resources :participations
   resource :session, only: [:new, :create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

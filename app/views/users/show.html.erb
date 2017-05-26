@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Avatar:</strong>
   <%= image_tag @user.avatar.url(:thumb) %>
 </p>
 
@@ -25,10 +24,54 @@
   <%= @user.coins %>
 </p>
 
-<p>
-  <strong>Role:</strong>
-  <%= @user.role %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) if current_user && current_user.id == @user.id %> |
+<% if current_user && @user.id == current_user.id %>
+<%= link_to 'Edit', edit_user_path(@user)%> |
+<% end %>
 <%= link_to 'Back', users_path %>
+
+<% if current_user && @user.id == current_user.id %>
+
+
+
+<h1>Current Bets</h1>
+
+<table>
+  <style>
+
+  </style>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Match</th>
+      <th>Team</th>
+      <th>Ammount</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Bet.where(user_id: @user.id, bet_state: 0).each do |bet| %>
+    <% t = Team.where(id: bet.team_id).first %>
+    <% m = Match.where(id: bet.match_id).first %>
+    <% e = Event.where(id: m.event_id).first %>
+    <tr>
+      <td><%= e.id %></td>
+      <td><%= if m.name; m.name
+      else m.id
+      end %></td>
+      <td><%= t.name %></td>
+      <td><%= bet.ammount %>
+        Coins
+      </td>
+      <td><% if m.bet_date > Date.today %>
+      <%= link_to 'Edit', edit_bet_path(bet)%>
+      <%= link_to 'Delete', bet, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Bet', new_bet_path%>
+<br>
+
+<% end %>
