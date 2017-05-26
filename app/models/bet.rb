@@ -5,7 +5,8 @@ class Bet < ApplicationRecord
   validates :user_id, presence: true, allow_blank: false
   validates :team_id, presence: true, allow_blank: false
   validate :bet_before_expiration_date?
-  validate :has_suf_money?
+  validate :has_suf_money?, :on => :create
+  validate :has_suf_updt_money?, :on => :update
 
   belongs_to :user
   belongs_to :match
@@ -22,6 +23,19 @@ class Bet < ApplicationRecord
     current_user = User.find(user_id)
     if current_user.coins - ammount < 0
       errors.add :base, "Not enought coins"
+    else
+      current_user.update_column(:coins, current_user.coins - ammount)
     end
   end
+
+  def has_suf_updt_money?
+    returned = Bet.find(id).ammount
+    current_user = User.find(user_id)
+    if current_user.coins - ammount + returned < 0
+      errors.add :base, "Not enought coins"
+    else
+      current_user.update_column(:coins, current_user.coins - ammount + returned)
+    end
+  end
+
 end
