@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   validates_attachment_content_type :avatar, content_type: /\Aimage/
   validates_attachment_file_name :avatar, matches: [/png\z/, /jpe?g\z/]
+  validates_attachment_size :avatar, :in => 0.kilobytes..500.kilobytes
 
   validates :coins, :numericality => {:greater_than_or_equal_to => 0}
   validates :role, :numericality => {:greater_than_or_equal_to => 0}
