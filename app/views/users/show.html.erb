@@ -71,6 +71,49 @@
   </tbody>
 </table>
 
+<br>
+
+<h1>Historial</h1>
+
+<table>
+  <style>
+
+  </style>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Match</th>
+      <th>Team</th>
+      <th>Ammount</th>
+      <th>Placing</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Bet.where("user_id = ? AND bet_state > '0'", current_user.id).each do |bet| %>
+    <% t = Team.where(id: bet.team_id).first %>
+    <% m = Match.where(id: bet.match_id).first %>
+    <% e = Event.where(id: m.event_id).first %>
+    <% par = Participation.where(team_id: t.id, match_id: m.id).first %>
+    <tr>
+      <td><%= e.id %></td>
+      <td><%= if m.name; m.name
+      else m.id
+      end %></td>
+      <td><%= t.name %></td>
+      <td><%= bet.ammount %>
+        Coins
+      </td>
+      <td><%= par.placing %></td>
+      <td><% if m.bet_date > Date.today %>
+      <%= link_to 'Edit', edit_bet_path(bet)%>
+      <%= link_to 'Delete', bet, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'New Bet', new_bet_path%>
 <br>
 
