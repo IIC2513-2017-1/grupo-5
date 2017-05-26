@@ -16,6 +16,7 @@
         <% end %>
       </div>
 
+
       <div id="user_bar">
         <% if current_user %>
           <div class="name">
@@ -32,6 +33,14 @@
         <%= link_to 'Users', users_path %>
         <%= link_to 'Events', events_path %>
       </nav>
+
+      <% if current_user %>
+      <div id="user_avatar">
+        <%= link_to current_user do %>
+          <%= image_tag current_user.avatar.url(:thumb) %>
+        <% end %>
+      </div>
+      <% end %>
 
     </header>
 

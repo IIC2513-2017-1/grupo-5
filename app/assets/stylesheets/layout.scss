@@ -37,6 +37,14 @@ main {
   height: 50px;
 }
 
+#user_avatar img {
+  height: 48px;
+  border: 1px solid;
+  position: absolute;
+  right: 150px;
+  top: 10px;  
+}
+
 nav#main_menu, #page_logo {
   display: inline-block;
   vertical-align: middle;
