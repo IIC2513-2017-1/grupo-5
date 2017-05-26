@@ -38,10 +38,11 @@ main {
 }
 
 #user_avatar img {
-  height: 50px;
+  height: 48px;
+  border: 1px solid;
   position: absolute;
   right: 150px;
-  top: 5px;
+  top: 10px;  
 }
 
 nav#main_menu, #page_logo {
