@@ -117,4 +117,38 @@
 <%= link_to 'New Bet', new_bet_path%>
 <br>
 
+
+
+<table>
+  <style>
+
+  </style>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mail</th>
+      <th>Status</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Follow.where(follower_id: current_user.id).each do |foll| %>
+    <% u = User.where(id: foll.following_id) %>
+    <% back = Follow.where(following_id: current_user.id, follower_id: u.id) %>
+    <% status = back ? 'Friends' : 'Following' %>
+    <tr>
+      <td><%= u.name %></td>
+      <td><%= u.mail %></td>
+      <td><%= status %></td>
+      <%= following_button(u)%>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+
 <% end %>
