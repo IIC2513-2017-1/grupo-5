@@ -1,3 +1,4 @@
+<% match = Match.new %>
 <%= form_for(match) do |f| %>
   <% if match.errors.any? %>
     <div id="error_explanation">
@@ -25,6 +26,8 @@
     <%= f.label :name %>
     <%= f.text_field :name, default: "" %>
   </div>
+
+    <%= f.hidden_field :event_id, :value => @event.id %>
 
   <div class="actions">
     <%= f.submit %>

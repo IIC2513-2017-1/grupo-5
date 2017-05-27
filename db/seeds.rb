@@ -71,7 +71,7 @@ User.create(
     description: Faker::Lorem.sentence
   )
 end
-
+=begin
 user_ids = User.pluck(:id)
 gestor_ids = User.where(role: 2).pluck(:id)
 # Create 10 events
@@ -128,3 +128,4 @@ end
     team_id: team_ids.sample
   )
 end
+=end
