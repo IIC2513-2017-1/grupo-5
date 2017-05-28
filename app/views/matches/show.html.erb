@@ -51,6 +51,17 @@
   </tbody>
 </table>
 
-<%= render :partial => 'participations/form', match: @match %>
+<% if current_user %>
+  <br/>
+  <strong>New Bet:</strong>
+  <%= render :partial => 'bets/form', match: @match %>
+<% end %>
+
+<% if current_user && current_user.id == @event.user_id %>
+  <br/>
+  <strong>Add Team:</strong>
+  <%= render :partial => 'participations/form', match: @match %>
+<% end %>
+
 <%= link_to 'Edit', edit_match_path %> |
 <%= link_to 'Event', event_path(@match.event_id) %>
