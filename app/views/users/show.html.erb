@@ -63,7 +63,6 @@
         Coins
       </td>
       <td><% if m.bet_date > Date.today %>
-      <%= link_to 'Edit', edit_bet_path(bet)%>
       <%= link_to 'Delete', bet, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </tr>
@@ -106,7 +105,6 @@
       </td>
       <td><%= par.placing %></td>
       <td><% if m.bet_date > Date.today %>
-      <%= link_to 'Edit', edit_bet_path(bet)%>
       <%= link_to 'Delete', bet, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </tr>
@@ -114,8 +112,6 @@
   </tbody>
 </table>
 
-<%= link_to 'New Bet', new_bet_path%>
-<br>
 
 
 <h1>Users</h1>
