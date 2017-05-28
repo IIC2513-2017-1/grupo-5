@@ -12,6 +12,7 @@ class PlacingsController < ApplicationController
     ## Close bets and distribute coins
     @bets.each do |bet|
       @user = User.find(bet.user_id)
+      BetsMailer.bets_mail(@user, @match, bet.ammount).deliver_later
       @user.update_attribute(:coins, @user.coins + bet.ammount)
       bet.bet_state = 1
       bet.save
