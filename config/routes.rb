@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   root 'events#index'
   resources :teams
-  resources :events
+  resources :events do
+    resources :invitations, only: [:create]
+  end
+  resources :invitations, only: [:destroy]
   resources :matches
   resources :bets
   resources :users do

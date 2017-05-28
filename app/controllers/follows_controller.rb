@@ -18,6 +18,6 @@ class FollowsController < ApplicationController
   def destroy
     follow = Follow.find(params[:id])
     follow.destroy
-    redirect_to users_path, notice: "You are not following #{follow.following.email} anymore"
+    redirect_to users_path, notice: "You are not following #{follow.followed.email} anymore"
   end
 end
