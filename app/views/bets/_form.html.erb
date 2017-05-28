@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= f.label :match_id %>
-    <%= f.select :match_id, Match.where("bet_date >= ?", Time.now).collect {|match| [match.id]}, {include_blank: true}, {required: true} %>
+    <%= f.select :match_id, Match.where("bet_date >= ?", Time.now).collect {|match| [match.name ? match.name : match.id, match.id]}, {include_blank: true}, {required: true} %>
   </div>
 
   <div class="field">

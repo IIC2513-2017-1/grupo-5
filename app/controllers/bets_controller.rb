@@ -26,15 +26,29 @@ class BetsController < ApplicationController
   def create
     @bet = Bet.new(bet_params)
     @user = User.find(@bet.user_id)
-    respond_to do |format|
-      if @bet.save
-        format.html { redirect_to @user, notice: 'Bet was successfully created.' }
-        format.json { render :show, status: :created, location: @bet }
-      else
-        format.html { render :new }
-        format.json { render json: @bet.errors, status: :unprocessable_entity }
+    @match = Match.find(@bet.match_id)
+    @event = Event.find(@match.event_id)
+    good = true
+    if @event.private
+      if !current_user
+        good = false
+      elsif !Invitation.where(event_id: @event.id, user_id: current_user.id).first
+        good = false
       end
+    end
+    if !good
+      redirect_to @user, notice: "You don't have permission."
+    else
+      respond_to do |format|
+        if @bet.save
+          format.html { redirect_to @user, notice: 'Bet was successfully created.' }
+          format.json { render :show, status: :created, location: @bet }
+        else
+          format.html { render :new }
+          format.json { render json: @bet.errors, status: :unprocessable_entity }
+        end
       end
+    end
   end
 
   # PATCH/PUT /bets/1

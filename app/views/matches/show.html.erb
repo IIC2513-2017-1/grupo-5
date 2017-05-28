@@ -23,6 +23,10 @@
   end %>
 </p>
 
+<% if current_user && current_user.id == Event.find(@match.event_id).user_id %>
+  <%= render :partial => 'participations/form', match: @match %>
+  <%= link_to 'Edit', edit_match_path %> |
+<% end %>
 
 <h1>Teams</h1>
 
@@ -45,12 +49,16 @@
         <td><%= if participation.placing == -1; ''
         else participation.placing
         end %></td>
-        <td><%= link_to 'Remove', participation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user && current_user.id == Event.find(@match.event_id).user_id %>
+          <td><%= link_to 'Remove', participation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= render :partial => 'participations/form', match: @match %>
-<%= link_to 'Edit', edit_match_path %> |
+<% if current_user && current_user.id == Event.find(@match.event_id).user_id %>
+  <%= render :partial => 'participations/form', match: @match %>
+<% end %>
+
 <%= link_to 'Event', event_path(@match.event_id) %>
