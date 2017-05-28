@@ -1,4 +1,3 @@
-<%participation = Participation.new if !participation %>
 <%= form_for(participation) do |f| %>
   <% if participation.errors.any? %>
     <div id="error_explanation">
@@ -16,7 +15,13 @@
     <%= f.label :Team %>
     <%= f.select :team_id, Team.all.collect {|team| [team.name, team.id]}, {include_blank: true}, {required: true} %>
   </div>
-  <%= f.hidden_field :match_id, :value => @match.id %>
+
+  <div class="field">
+    <%= f.label :placing %>
+    <%= f.number_field :placing, default: 1, required: true %>
+  </div>
+
+  <%= f.hidden_field :match_id %>
 
   <div class="actions">
     <%= f.submit %>

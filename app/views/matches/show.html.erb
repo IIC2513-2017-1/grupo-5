@@ -42,10 +42,11 @@
       <% t = Team.where(id: participation.team_id).first %>
       <tr>
         <td><%= t.name %></td>
-        <td><%= if participation.placing == -1; ''
+        <td><%= if participation.placing == -1; 'No results yet'
         else participation.placing
         end %></td>
-        <td><%= link_to 'Remove', participation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_participation_path(participation) if current_user && current_user.id == @event.user_id %></td>
+        <td><%= link_to 'Remove', participation, method: :delete, data: { confirm: 'Are you sure?' } if current_user && current_user.id == @event.user_id %></td>
       </tr>
     <% end %>
   </tbody>
@@ -61,6 +62,10 @@
   <br/>
   <strong>Add Team:</strong>
   <%= render :partial => 'participations/form', match: @match %>
+<% end %>
+
+<% if current_user && current_user.id == @event.user_id %>
+  <%= button_to 'Close match', {:controller => "placings", :action => "create", :match_id => @match.id}, :method => :post %>
 <% end %>
 
 <%= link_to 'Edit', edit_match_path %> |
