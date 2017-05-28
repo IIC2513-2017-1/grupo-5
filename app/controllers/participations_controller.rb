@@ -61,7 +61,7 @@ class ParticipationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def participation_params
-      defaults = {placing: 1}
-      params.require(:participation).permit(:match_id, :team_id).reverse_merge(defaults)
+      defaults = {placing: -1}
+      params.require(:participation).permit(:match_id, :team_id, :placing).reverse_merge(defaults)
     end
 end

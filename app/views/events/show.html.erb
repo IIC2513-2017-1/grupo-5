@@ -50,11 +50,11 @@
         <td><%= match.match_date %></td>
         <td><%= link_to 'Show', match %></td>
         <td><%if match.state == 0 %>
-              <%= link_to 'Edit', edit_match_path(match) if current_user && current_user.id = @event.id %>
+              <%= link_to 'Edit', edit_match_path(match) if (current_user && current_user.id = @event.id) %>
             <% else %>
               This match has been closed.
             <% end %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } if current_user && current_user.id = @event.id %></td>
+        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } if (current_user && current_user.id = @event.id) %></td>
       </tr>
       <tr>
         <th>Team Names</th>
