@@ -1,3 +1,4 @@
+<% bet = Bet.new %>
 <%= form_for(bet) do |f| %>
   <% if bet.errors.any? %>
     <div id="error_explanation">
@@ -12,19 +13,16 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :team_id %>
+    <%= f.select :team_id, Team.joins(:participations).where(['participations.match_id = ?', @match.id]).collect {|team| [team.name, team.id]}, {include_blank: true}, {required: true} %>
+  </div>
+
+  <div class="field">
     <%= f.label :ammount %>
     <%= f.number_field :ammount, required: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :match_id %>
-    <%= f.select :match_id, Match.where("bet_date >= ?", Time.now).collect {|match| [match.id]}, {include_blank: true}, {required: true} %>
-  </div>
-
-  <div class="field">
-    <%= f.label :team_id %>
-    <%= f.select :team_id, Team.all.collect {|team| [team.id]}, {include_blank: true}, {required: true} %>
-  </div>
+  <%= f.hidden_field :match_id, :value => @match.id %>
 
   <div class="actions">
     <%= f.submit %>

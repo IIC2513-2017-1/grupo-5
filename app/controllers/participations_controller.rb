@@ -1,5 +1,5 @@
 class ParticipationsController < ApplicationController
-
+  before_action :set_participation, only: [:show, :edit, :update, :destroy]
 
   def index
     @participations = Participation.all
@@ -31,6 +31,7 @@ class ParticipationsController < ApplicationController
   end
 
   def update
+    @match = Match.where(id: @participation.match_id).first
     respond_to do |format|
       if @participation.update(participation_params)
         format.html { redirect_to @match, notice: 'Participation was successfully updated.' }
@@ -60,6 +61,7 @@ class ParticipationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def participation_params
-      params.require(:participation).permit(:match_id, :team_id).merge(placing: 5)
+      defaults = {placing: -1}
+      params.require(:participation).permit(:match_id, :team_id, :placing).reverse_merge(defaults)
     end
 end
