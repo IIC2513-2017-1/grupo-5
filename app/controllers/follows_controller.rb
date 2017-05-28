@@ -1,14 +1,14 @@
-class FollowersController < ApplicationController
+class FollowsController < ApplicationController
   include Secured
 
   before_action :logged_in?
 
   def create
     user = User.find(params[:user_id])
-    follower_relationship = user.follower_relationships.build(
+    followed_relationship = user.followed_relationships.build(
       follower_id: current_user.id
     )
-    if follower_relationship.save
+    if followed_relationship.save
       redirect_to users_path
     else
       redirect_to users_path, alert: "Can't follow that user"
