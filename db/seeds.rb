@@ -71,7 +71,7 @@ User.create(
     description: Faker::Lorem.sentence
   )
 end
-=begin
+
 user_ids = User.pluck(:id)
 gestor_ids = User.where(role: 2).pluck(:id)
 # Create 10 events
@@ -119,13 +119,12 @@ match_ids = Match.pluck(:id)
 end
 
 # Create 20 bets
-20.times do
-  Bet.create(
-    ammount: rand(0..100),
-    bet_state: rand(0..1),
-    match_id: match_ids.sample,
-    user_id: user_ids.sample,
-    team_id: team_ids.sample
-  )
-end
-=end
+# 20.times do
+#   Bet.create(
+#     ammount: rand(0..100),
+#     bet_state: rand(0..1),
+#     match_id: match_ids.sample,
+#     user_id: user_ids.sample,
+#     team_id: team_ids.sample
+#   )
+# end
