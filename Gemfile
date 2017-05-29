@@ -30,6 +30,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'faker', '~> 1.7.3'
 gem 'paperclip', '~> 5.0.0'
 gem 'figaro'
+gem 'rubyzip'
+gem 'axlsx'
+gem 'axlsx_rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
