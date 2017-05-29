@@ -23,9 +23,8 @@
   end %>
 </p>
 
-<% if current_user && current_user.id == Event.find(@match.event_id).user_id %>
-  <%= render :partial => 'participations/form', match: @match %>
-  <%= link_to 'Edit', edit_match_path %> |
+<% if current_user && current_user.id == Event.find(@match.event_id).user_id && @match.state == 0%>
+  <%= link_to 'Edit', edit_match_path %>
 <% end %>
 
 <h1>Teams</h1>
@@ -57,11 +56,6 @@
 </table>
 
 
-<% if current_user && @match.state == 0%>
-  <br/>
-  <strong>New Bet:</strong>
-  <%= render :partial => 'bets/form', match: @match %>
-<% end %>
 
 <% if current_user && current_user.id == @event.user_id && @match.state == 0%>
   <br/>
@@ -73,6 +67,24 @@
   <%= button_to 'Close match', {:controller => "placings", :action => "create", :match_id => @match.id}, :method => :post %>
 <% end %>
 
-<%= link_to 'Edit', edit_match_path %> |
+
+<% if current_user && @match.state == 0 && current_user.role == 1%>
+  <% ev = Event.find(@match.event_id) %>
+  <% good = true %>
+
+  <% if ev.private %>
+    <% inv = Invitation.where(user_id: current_user.id, event_id: ev.id).first %>
+
+
+    <% if !inv %>
+      <% good = false %>
+    <% end %>
+  <% end %>
+
+  <% if good %>
+    <h2>Create Bet</h2>
+    <%= render :partial => 'bets/form', match: @match %>
+  <% end %>
+<% end %>
 
 <%= link_to 'Event', event_path(@match.event_id) %>

@@ -57,11 +57,11 @@
         <td><%= match.match_date %></td>
         <td><%= link_to 'Show', match %></td>
         <td><%if match.state == 0 %>
-              <%= link_to 'Edit', edit_match_path(match) if (current_user && current_user.id = @event.user_id) %>
+              <%= link_to 'Edit', edit_match_path(match) if (current_user && current_user.id == @event.user_id) %>
             <% else %>
               This match has been closed.
             <% end %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } if (current_user && current_user.id = @event.user_id) %></td>
+        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } if (current_user && current_user.id == @event.user_id) %></td>
       </tr>
       <tr>
         <th>Team Names</th>
@@ -82,13 +82,14 @@
   </tbody>
 </table>
 
-<% if current_user && current_user.id == @event.user_id %>
+
+<% if current_user && current_user.id == @event.user_id%>
   <br/>
   <strong>New Match:</strong>
   <%= render :partial => 'matches/form', event: @event %>
 <% end %>
 
-<% if @event.private && current_user && @event.user == current_user %>
+<% if @event.private && current_user && @event.user_id == current_user.id %>
   <h2>Invitations</h2>
 
   <table>

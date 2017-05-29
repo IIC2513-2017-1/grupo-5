@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
   resources :invitations, only: [:destroy]
   resources :matches
-  resources :bets
+  resources :bets, only: [:new, :create, :edit, :show]
   resources :users do
     resources :follows, only: [:create]
   end
