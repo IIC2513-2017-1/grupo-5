@@ -56,10 +56,10 @@ class BetsController < ApplicationController
   def update
     respond_to do |format|
       if @bet.update(bet_params)
-        format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
+        format.html { redirect_to match_path(@bet.match_id), notice: 'Bet was successfully updated.' }
         format.json { render :show, status: :ok, location: @bet }
       else
-        format.html { render :edit }
+        format.html { redirect_to match_path(@bet.match_id), notice: 'There was an error with the bet' }
         format.json { render json: @bet.errors, status: :unprocessable_entity }
       end
     end

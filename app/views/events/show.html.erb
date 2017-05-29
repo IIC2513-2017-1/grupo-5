@@ -56,10 +56,12 @@
         <td><%= match.bet_date %></td>
         <td><%= match.match_date %></td>
         <td><%= link_to 'Show', match %></td>
-        <% if current_user && current_user.id == @event.user_id %>
-          <td><%= link_to 'Edit', edit_match_path(match) %></td>
-          <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <td><%if match.state == 0 %>
+              <%= link_to 'Edit', edit_match_path(match) if (current_user && current_user.id = @event.user_id) %>
+            <% else %>
+              This match has been closed.
+            <% end %></td>
+        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } if (current_user && current_user.id = @event.user_id) %></td>
       </tr>
       <tr>
         <th>Team Names</th>
@@ -79,6 +81,12 @@
     <% end %>
   </tbody>
 </table>
+
+<% if current_user && current_user.id == @event.user_id %>
+  <br/>
+  <strong>New Match:</strong>
+  <%= render :partial => 'matches/form', event: @event %>
+<% end %>
 
 <% if @event.private && current_user && @event.user == current_user %>
   <h2>Invitations</h2>
@@ -108,9 +116,6 @@
     </tbody>
   </table>
 
-
 <% end %>
-
-
 
 <%= link_to 'Back', events_path %>

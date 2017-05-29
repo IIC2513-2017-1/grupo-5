@@ -46,19 +46,33 @@
       <% t = Team.where(id: participation.team_id).first %>
       <tr>
         <td><%= t.name %></td>
-        <td><%= if participation.placing == -1; ''
+        <td><%= if participation.placing == -1; 'No results yet'
         else participation.placing
         end %></td>
-        <% if current_user && current_user.id == Event.find(@match.event_id).user_id %>
-          <td><%= link_to 'Remove', participation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <td><%= link_to 'Edit', edit_participation_path(participation) if current_user && current_user.id == @event.user_id %></td>
+        <td><%= link_to 'Remove', participation, method: :delete, data: { confirm: 'Are you sure?' } if current_user && current_user.id == @event.user_id %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<% if current_user && current_user.id == Event.find(@match.event_id).user_id %>
+
+<% if current_user && @match.state == 0%>
+  <br/>
+  <strong>New Bet:</strong>
+  <%= render :partial => 'bets/form', match: @match %>
+<% end %>
+
+<% if current_user && current_user.id == @event.user_id && @match.state == 0%>
+  <br/>
+  <strong>Add Team:</strong>
   <%= render :partial => 'participations/form', match: @match %>
 <% end %>
+
+<% if current_user && current_user.id == @event.user_id && @match.state == 0%>
+  <%= button_to 'Close match', {:controller => "placings", :action => "create", :match_id => @match.id}, :method => :post %>
+<% end %>
+
+<%= link_to 'Edit', edit_match_path %> |
 
 <%= link_to 'Event', event_path(@match.event_id) %>

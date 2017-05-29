@@ -10,6 +10,7 @@ class MatchesController < ApplicationController
   # GET /matches/1
   # GET /matches/1.json
   def show
+    @event = Event.find(@match.event_id)
   end
 
   # GET /matches/new
@@ -26,13 +27,12 @@ class MatchesController < ApplicationController
   # POST /matches.json
   def create
     @match = Match.new(match_params)
-
     respond_to do |format|
       if @match.save
         format.html { redirect_to @match, notice: 'Match was successfully created.' }
         format.json { render :show, status: :created, location: @match }
       else
-        format.html { render :new }
+        format.html { redirect_to event_path(@match.event_id), notice: 'There was an error with the match.' }
         format.json { render json: @match.errors, status: :unprocessable_entity }
       end
     end
@@ -46,7 +46,7 @@ class MatchesController < ApplicationController
         format.html { redirect_to @match, notice: 'Match was successfully updated.' }
         format.json { render :show, status: :ok, location: @match }
       else
-        format.html { render :edit }
+        format.html { redirect_to event_path(@match.event_id), notice: 'There was an error with the match.' }
         format.json { render json: @match.errors, status: :unprocessable_entity }
       end
     end
@@ -72,6 +72,7 @@ class MatchesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_match
       @match = Match.find(params[:id])
+      @event = Event.find(@match.event_id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
