@@ -72,13 +72,13 @@
   <%= button_to 'Download results', {:controller => 'informations', :action => "create", :match_id => @match.id, :event_id => @event.id}, :method => :post %>
 <% end %>
 
-<% if current_user && @match.state == 0 && current_user.role == 1%>
-  <% ev = Event.find(@match.event_id) %>
+
+<% ev = Event.find(@match.event_id) %>
+<% if current_user && @match.state == 0 && ev.user_id != current_user.id %>
   <% good = true %>
 
   <% if ev.private %>
     <% inv = Invitation.where(user_id: current_user.id, event_id: ev.id).first %>
-
 
     <% if !inv %>
       <% good = false %>
