@@ -1,11 +1,12 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Results") do |sheet|
-  sheet.add_row ["Match name:", @match.name, "Match author:", @user.first_name + " " + @user.last_name, "Start date:", @event.date_start, "End date:", @event.date_end]
+  sheet.add_row ["Match name:", @match.name, "Match author:", @user.first_name + " " + @user.last_name, "Start date:", @event.date_start, "End date:", @event.date_end], :style => Axlsx::STYLE_THIN_BORDER
   sheet.add_row [""]
-  sheet.add_row ["Bet ID", "User", "Team", "Ammount"]
+  sheet.add_row ["Bet ID", "User", "Team", "Ammount"], :style => Axlsx::STYLE_THIN_BORDER
   @bets.each do |bet|
-    sheet.add_row [bet.id, bet.user.first_name + " " + bet.user.last_name, bet.team.name, bet.ammount]
+    sheet.add_row [bet.id, bet.user.first_name + " " + bet.user.last_name, bet.team.name, bet.ammount], :style => Axlsx::STYLE_THIN_BORDER
   end
   sheet.add_row [""]
-  sheet.add_row ["Winning team:", @winner.name, "Total bets:", @bets.count, "Total coins in bets:", @bets.sum(:ammount)]
+  sheet.add_row ["Winning team:", @winner.name, "Total bets:", @bets.count, "Total coins in bets:", @bets.sum(:ammount)], :style => Axlsx::STYLE_THIN_BORDER
+  sheet.column_widths nil, nil, nil, nil, nil, nil, nil, nil
 end
