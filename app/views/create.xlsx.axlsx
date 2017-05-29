@@ -1,0 +1,4 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Results") do |sheet|
+  sheet.add_row["Match name:", @match.name, "Match author:", @user.first_name + " " + @user.last_name, "Start date:", @event.date_start, "End date:", @event.date_end]
+end
