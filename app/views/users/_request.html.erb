@@ -1,0 +1,24 @@
+
+<li class="follow-request-item">
+
+  <div class="other-user-info">
+
+    <span class="other-user-name">
+      Name:
+      <%= other_user.first_name %>
+      <%= other_user.last_name %>
+    </span>
+    <span class="other-user-email">
+      Email:
+      <%= other_user.email %>
+    </span>
+    <span class="other-user-profile-link">
+      <%= link_to 'Profile', other_user %>
+    </span>
+    <span class="follow-button">
+      <%= following_button(other_user) %>
+    </span>
+
+  </div>
+
+</li>

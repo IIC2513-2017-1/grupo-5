@@ -1,0 +1,34 @@
+<% t = Team.where(id: bet.team_id).first %>
+<% m = Match.where(id: bet.match_id).first %>
+<% e = Event.where(id: m.event_id).first %>
+
+<li class="bet-stream-item">
+
+  <div class="bet-info">
+    <span class="bet-event-id">
+      Event:
+      <%= m.event_id %>
+    </span>
+    <span class="bet-match-name">
+      Match:
+      <% if m.name %>
+        <%= m.name %>
+      <% else %>
+        <%= m.id %>
+      <%end %>
+    </span>
+    <span class="bet-team-name">
+      Team:
+      <%= t.name %>
+    </span>
+    <span class="bet-ammount">
+      Ammount:
+      <%= bet.ammount %> Coins
+    </span>
+    <span class="bet-delete-link">
+      <% if m.bet_date > Date.today %>
+      <%= link_to 'Delete Bet', bet, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </span>
+  </div>
+</li>

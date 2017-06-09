@@ -31,144 +31,50 @@
 
 <% if current_user && @user.id == current_user.id %>
 
+  <div class="tab">
+    <button class="tablinks defaultOpen" data-tab="actual-bets">Bets</button>
+    <button class="tablinks" data-tab="old-bets">History</button>
+    <button class="tablinks" data-tab="followed-users">Users</button>
+    <button class="tablinks" data-tab="follow-request">Follow Requests</button>
+  </div>
 
+  <div class="user-bets">
+    <div class="actual-bets tabcontent">
+      <o1>
+        <% Bet.where(user_id: @user.id, bet_state: 0).each do |bet| %>
+          <%= render 'bets/preview', bet: bet %>
+        <% end %>
+      </o1>
+    </div>
 
-<h1>Current Bets</h1>
+    <div class="old-bets tabcontent">
+      <o1>
+        <% Bet.where("user_id = ? AND bet_state > '0'", current_user.id).each do |bet| %>
+          <%= render 'bets/preview', bet: bet %>
+        <% end %>
+      </o1>
+    </div>
 
-<table>
-  <style>
+    <div class="followed-users tabcontent">
+      <o1>
+        <% Follow.where(follower_id: current_user.id).each do |foll| %>
+          <%= render 'preview', foll: foll %>
+        <% end %>
+      </o1>
+    </div>
 
-  </style>
-  <thead>
-    <tr>
-      <th>Event</th>
-      <th>Match</th>
-      <th>Team</th>
-      <th>Ammount</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% Bet.where(user_id: @user.id, bet_state: 0).each do |bet| %>
-    <% t = Team.where(id: bet.team_id).first %>
-    <% m = Match.where(id: bet.match_id).first %>
-    <% e = Event.where(id: m.event_id).first %>
-    <tr>
-      <td><%= e.id %></td>
-      <td><%= if m.name; m.name
-      else m.id
-      end %></td>
-      <td><%= t.name %></td>
-      <td><%= bet.ammount %>
-        Coins
-      </td>
-      <td><% if m.bet_date > Date.today %>
-      <%= link_to 'Delete', bet, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="follow-request tabcontent">
+      <o1>
+        <% Follow.where(followed_id: current_user.id).each do |foll| %>
+          <% other_user = foll.follower %>
+          <% back = Follow.where(followed_id: other_user.id, follower_id: current_user.id).first %>
+          <% if !back %>
+            <%= render 'request', other_user: other_user %>
+          <% end %>
+        <% end %>
+      </o1>
+    </div>
 
-<br>
-
-<h1>Historial</h1>
-
-<table>
-  <style>
-
-  </style>
-  <thead>
-    <tr>
-      <th>Event</th>
-      <th>Match</th>
-      <th>Team</th>
-      <th>Ammount</th>
-      <th>Placing</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% Bet.where("user_id = ? AND bet_state > '0'", current_user.id).each do |bet| %>
-    <% t = Team.where(id: bet.team_id).first %>
-    <% m = Match.where(id: bet.match_id).first %>
-    <% e = Event.where(id: m.event_id).first %>
-    <% par = Participation.where(team_id: t.id, match_id: m.id).first %>
-    <tr>
-      <td><%= e.id %></td>
-      <td><%= if m.name; m.name
-      else m.id
-      end %></td>
-      <td><%= t.name %></td>
-      <td><%= bet.ammount %>
-        Coins
-      </td>
-      <td><%= par.placing %></td>
-      <td><% if m.bet_date > Date.today %>
-      <%= link_to 'Delete', bet, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-
-<h1>Users</h1>
-
-<table>
-  <style>
-
-  </style>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Mail</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% Follow.where(follower_id: current_user.id).each do |foll| %>
-      <% other_user = foll.followed %>
-      <% back = Follow.where(follower_id: other_user.id, followed_id: current_user.id).first %>
-      <% status = back ? 'Friends' : 'Following' %>
-      <tr>
-        <td><%= other_user.first_name %>
-        <%= other_user.last_name %></td>
-        <td><%= other_user.email %></td>
-        <td><%= status %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<h2>Follow Requests</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Mail</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% Follow.where(followed_id: current_user.id).each do |foll| %>
-      <% other_user = foll.follower %>
-      <% back = Follow.where(followed_id: other_user.id, follower_id: current_user.id).first %>
-      <% if !back %>
-        <tr>
-          <td><%= other_user.first_name %>
-          <%= other_user.last_name %></td>
-          <td><%= other_user.email %></td>
-          <td><%= link_to 'Show', other_user %> </td>
-          <td><%= following_button(other_user) %></td>
-
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+  </div>
 
 <% end %>
