@@ -1,0 +1,67 @@
+
+<li class="matches-item-information">
+
+  <h3>Match Info</h3>
+
+  <table class="match-information">
+
+    <tr class="info-headers">
+      <th>
+        Match name
+      </th>
+      <th>
+        Bet deadline
+      </th>
+      <th>
+        Match date
+      </th>
+    </tr>
+
+    <tr class="info-data">
+      <td>
+        <%= match.name %>
+      </td>
+      <td>
+        <%= match.bet_date %>
+      </td>
+      <td>
+        <%= match.match_date %>
+      </td>
+    </tr>
+  </table>
+
+  <h3>Teams</h3>
+
+  <table class="match-teams-table">
+
+    <tr class="teams-headers">
+      <th>Team Names</th>
+      <th>Placings</th>
+    </tr>
+
+    <% Participation.where(match_id: match.id).each do |participation| %>
+      <% t = Team.where(id: participation.team_id).first %>
+      <tr class="team-content">
+        <td class="team-name attribute">
+          <%= t.name %>
+        </td>
+        <td class="team-result attribute">
+          <% if participation.placing == -1 %>
+            No reults yet
+          <% else %>
+            <%= participation.placing %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= link_to 'Show', match %>
+  <% if (current_user && current_user.id == @event.user_id && match.state == 0) %>
+    | <%= link_to 'Edit', edit_match_path(match) %>
+    | <%= link_to 'Delete', match, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+
+</li>
+
+<br>

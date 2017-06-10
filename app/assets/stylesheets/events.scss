@@ -34,3 +34,42 @@
   text-decoration: none;
   color: black;
 }
+
+.match-teams-table{
+  border: 1px solid #bbb;
+  width: 100%;
+}
+
+.teams-headers th{
+  text-align: center;
+  border: 1px solid #bbb;
+}
+
+.team-content td{
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.matches-item-information{
+  padding: 10px;
+  padding-top: 0px;
+  border-radius: 10px;
+  list-style-type: none;
+  border: 2px solid #ccc;
+  width: 50%;
+}
+
+.match-information{
+  border: 1px solid #bbb;
+  width: 100%;
+}
+
+.info-headers th{
+  text-align: center;
+  border: 1px solid #bbb;
+}
+
+.info-data td{
+  border: 1px solid #ddd;
+  text-align: center;
+}
