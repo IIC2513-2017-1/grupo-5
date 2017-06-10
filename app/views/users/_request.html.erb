@@ -1,17 +1,17 @@
 
 <tr class="follow-request-item">
 
-  <td class="other-user-name content">
+  <td class="other-user-name user-content">
     <%= other_user.first_name %>
     <%= other_user.last_name %>
   </td>
-  <td class="other-user-email content">
+  <td class="other-user-email user-content">
     <%= other_user.email %>
   </td>
-  <td class="other-user-profile-link content">
+  <td class="other-user-profile-link user-content">
     <%= link_to 'View', other_user %>
   </td>
-  <td class="follow-button content">
+  <td class="follow-button user-content">
     <%= following_button(other_user) %>
   </td>
 

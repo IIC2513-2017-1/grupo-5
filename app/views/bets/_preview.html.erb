@@ -3,23 +3,23 @@
 <% e = Event.where(id: m.event_id).first %>
 
 <tr class="bet-stream-item">
-  <td class="bet-event-id content">
+  <td class="bet-event-id bet-content">
     <%= m.event_id %>
   </td>
-  <td class="bet-match-name content">
+  <td class="bet-match-name bet-content">
     <% if m.name %>
       <%= m.name %>
     <% else %>
       <%= m.id %>
     <%end %>
   </td>
-  <td class="bet-team-name content">
+  <td class="bet-team-name bet-content">
     <%= t.name %>
   </td>
-  <td class="bet-ammount content">
+  <td class="bet-ammount bet-content">
     <%= bet.ammount %> Coins
   </td>
-  <td class="bet-delete-link content">
+  <td class="bet-delete-link bet-content">
     <% if m.bet_date > Date.today %>
       <%= link_to 'Delete Bet', bet, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% else %>
