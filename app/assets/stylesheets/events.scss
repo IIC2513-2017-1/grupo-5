@@ -1,3 +1,36 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.event-table{
+  width: 100%;
+  border: 1px solid #bbb;
+}
+
+.event-table-header th{
+  border: 1px solid #bbb;
+}
+
+.event-content{
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.event-action-subtable{
+  width: 100%;
+}
+
+.subsection td:hover{
+  border: 1px solid #aaa;
+}
+
+.subsection td{
+  background-color: #eee;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.link-button{
+  text-decoration: none;
+  color: black;
+}
