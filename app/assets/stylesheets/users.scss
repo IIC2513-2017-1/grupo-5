@@ -6,7 +6,7 @@
 /* Style the tab */
 div.tab {
     overflow: hidden;
-    border: 1px solid #ccc;
+    border:1px solid #ccc;
     background-color: #f1f1f1;
     margin-top: 10px;
 }
@@ -34,8 +34,12 @@ div.tab button.active {
 
 /* Style the tab content */
 .tabcontent {
+    width: 100%;
     display: none;
-    padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+}
+
+.tab-headers th{
+  border: 1px solid #ccc;
 }

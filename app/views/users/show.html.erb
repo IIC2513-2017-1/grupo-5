@@ -38,42 +38,59 @@
     <button class="tablinks" data-tab="follow-request">Follow Requests</button>
   </div>
 
-  <div class="user-bets">
-    <div class="actual-bets tabcontent">
-      <o1>
-        <% Bet.where(user_id: @user.id, bet_state: 0).each do |bet| %>
-          <%= render 'bets/preview', bet: bet %>
-        <% end %>
-      </o1>
-    </div>
+  <div class="user-bets-and-friendship">
+    <table class="actual-bets tabcontent">
+      <tr class="actual-bets tab-headers">
+        <th>Event</th>
+        <th>Match</th>
+        <th>Team</th>
+        <th>Ammout</th>
+        <th>Action</th>
+      </tr>
+      <% Bet.where(user_id: @user.id, bet_state: 0).each do |bet| %>
+        <%= render 'bets/preview', bet: bet %>
+      <% end %>
+    </table>
 
-    <div class="old-bets tabcontent">
-      <o1>
-        <% Bet.where("user_id = ? AND bet_state > '0'", current_user.id).each do |bet| %>
-          <%= render 'bets/preview', bet: bet %>
-        <% end %>
-      </o1>
-    </div>
+    <table class="old-bets tabcontent">
+      <tr class="old-bets tab-headers">
+        <th>Event</th>
+        <th>Match</th>
+        <th>Team</th>
+        <th>Ammout</th>
+        <th>Action</th>
+      </tr>
+      <% Bet.where("user_id = ? AND bet_state > '0'", current_user.id).each do |bet| %>
+        <%= render 'bets/preview', bet: bet %>
+      <% end %>
+    </table>
 
-    <div class="followed-users tabcontent">
-      <o1>
-        <% Follow.where(follower_id: current_user.id).each do |foll| %>
-          <%= render 'preview', foll: foll %>
-        <% end %>
-      </o1>
-    </div>
+    <table class="followed-users tabcontent">
+      <tr class="followed-users tab-headers">
+        <th>Name</th>
+        <th>Email</th>
+        <th>Status</th>
+      </tr>
+      <% Follow.where(follower_id: current_user.id).each do |foll| %>
+        <%= render 'preview', foll: foll %>
+      <% end %>
+    </table>
 
-    <div class="follow-request tabcontent">
-      <o1>
-        <% Follow.where(followed_id: current_user.id).each do |foll| %>
-          <% other_user = foll.follower %>
-          <% back = Follow.where(followed_id: other_user.id, follower_id: current_user.id).first %>
-          <% if !back %>
-            <%= render 'request', other_user: other_user %>
-          <% end %>
+    <table class="follow-request tabcontent">
+      <tr class="follow-request tab-headers">
+        <th>Name</th>
+        <th>Email</th>
+        <th>Profile</th>
+        <th>Action</th>
+      </tr>
+      <% Follow.where(followed_id: current_user.id).each do |foll| %>
+        <% other_user = foll.follower %>
+        <% back = Follow.where(followed_id: other_user.id, follower_id: current_user.id).first %>
+        <% if !back %>
+          <%= render 'request', other_user: other_user %>
         <% end %>
-      </o1>
-    </div>
+      <% end %>
+    </table>
 
   </div>
 

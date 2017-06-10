@@ -8,6 +8,7 @@ body {
   color: #333;
   padding-top: 85px;
   background-color: #f5f8fa;
+  overflow-y: scroll;
 }
 
 header {
@@ -42,7 +43,7 @@ main {
   border: 1px solid;
   position: absolute;
   right: 150px;
-  top: 10px;  
+  top: 10px;
 }
 
 nav#main_menu, #page_logo {

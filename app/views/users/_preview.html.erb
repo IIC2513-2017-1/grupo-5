@@ -2,23 +2,17 @@
 <% back = Follow.where(follower_id: other_user.id, followed_id: current_user.id).first %>
 <% status = back ? 'Friends' : 'Following' %>
 
-<li class="user-followed-item">
+<tr class="user-followed-item">
 
-  <div class="followed-user-info">
+  <td class="other-user-name content">
+    <%= other_user.first_name %>
+    <%= other_user.last_name %>
+  </td>
+  <td class="other-user-email content">
+    <%= other_user.email %>
+  </td>
+  <td class="friendship-status content">
+    <%= status %>
+  </td>
 
-    <span class="other-user-name">
-      Name:
-      <%= other_user.first_name %>
-      <%= other_user.last_name %>
-    </span>
-    <span class="other-user-email">
-      Email:
-      <%= other_user.email %>
-    </span>
-    <span class="friendship-status">
-      <%= status %>
-    </span>
-
-  </div>
-  
-</li>
+</tr>
