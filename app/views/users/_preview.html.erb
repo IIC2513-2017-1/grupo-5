@@ -1,0 +1,18 @@
+<% other_user = foll.followed %>
+<% back = Follow.where(follower_id: other_user.id, followed_id: current_user.id).first %>
+<% status = back ? 'Friends' : 'Following' %>
+
+<tr class="user-followed-item">
+
+  <td class="other-user-name content">
+    <%= other_user.first_name %>
+    <%= other_user.last_name %>
+  </td>
+  <td class="other-user-email content">
+    <%= other_user.email %>
+  </td>
+  <td class="friendship-status content">
+    <%= status %>
+  </td>
+
+</tr>
