@@ -85,4 +85,10 @@
 
 <% end %>
 
+<% if current_user %>
+  <br/>
+  <%= button_to 'Download results', {:controller => 'eventresults', :action => "create", :event_id => @event.id}, :method => :post %>
+
+<% end %>
+
 <%= link_to 'Back', events_path %>
