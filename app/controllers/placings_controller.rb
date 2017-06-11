@@ -4,7 +4,6 @@ class PlacingsController < ApplicationController
   def create
     ## Find teams and bets
     @match = Match.find(params[:match_id])
-    @teams = Team.joins(:participations).where(['participations.match_id = ?', @match.id]).order(placing: :desc)
     @bets = Bet.where(match_id: @match.id)
     @coins = @bets.sum(:ammount)
     @places = Participation.where(match_id: @match.id).maximum(:placing)
