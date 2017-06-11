@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Event_Results") do |sheet|
+  sheet.add_row ["Event name:", @event.event_type, "Event author:", @user.first_name + " " + @user.last_name, "Start date:", @event.date_start, "End date:", @event.date_end], :style => Axlsx::STYLE_THIN_BORDER
+  sheet.add_row [""]
+  sheet.add_row ["Match name", "Match Date", "State", "Bets made", "Total money", "Winning option"], :style => Axlsx::STYLE_THIN_BORDER
+  @matches.each do |match|
+    @counts = Bet.where(match_id: match.id).count
+    @money = Bet.where(match_id: match.id).sum(:ammount)
+    @winner = Team.joins(:participations).where(['participations.match_id = ? AND participations.placing = ?', match.id, 1]).first
+    sheet.add_row [match.name, match.match_date, match.state == 0 ? 'Open' : 'Close', match.state == 1 ? @counts : '', match.state == 1 ? @money : '', match.state == 1 ? @winner.name : ''], :style => Axlsx::STYLE_THIN_BORDER
+  end
+  sheet.column_widths nil, nil, nil, nil, nil, nil, nil, nil
+end
