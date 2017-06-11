@@ -58,29 +58,33 @@
 <% if @event.private && current_user && @event.user_id == current_user.id %>
   <h2>Invitations</h2>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Mail</th>
-        <th>Status</th>
-        <th colspan="3"></th>
+  <table class="invitations-table">
+    <tr class="invitation-headers">
+      <th>Name</th>
+      <th>Mail</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    <% Follow.where(follower_id: current_user.id).each do |foll| %>
+      <% other_user = foll.followed %>
+      <% back = Follow.where(follower_id: other_user.id, followed_id: current_user.id).first %>
+      <% status = back ? 'Friends' : 'Following' %>
+      <tr class="invitation-body">
+        <td class="invitation-name invitation-data">
+          <%= other_user.first_name %>
+          <%= other_user.last_name %>
+        </td>
+        <td class="invitation-email invitation-data">
+          <%= other_user.email %>
+        </td>
+        <td class="invitation-status invitation-data">
+          <%= status %>
+        </td>
+        <td class="invitation-button invitation-data">
+          <%= invite_button(other_user, @event) %>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% Follow.where(follower_id: current_user.id).each do |foll| %>
-        <% other_user = foll.followed %>
-        <% back = Follow.where(follower_id: other_user.id, followed_id: current_user.id).first %>
-        <% status = back ? 'Friends' : 'Following' %>
-        <tr>
-          <td><%= other_user.first_name %>
-          <%= other_user.last_name %></td>
-          <td><%= other_user.email %></td>
-          <td><%= status %></td>
-          <td><%= invite_button(other_user, @event) %></td>
-        </tr>
-      <% end %>
-    </tbody>
+    <% end %>
   </table>
 
 <% end %>

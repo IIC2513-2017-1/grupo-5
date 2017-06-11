@@ -24,7 +24,11 @@
       </td>
 
       <td class="event-privacity event-content">
-        <%= event.private %>
+        <% if event.private%>
+          Private
+        <% else %>
+          Public
+        <% end %>
       </td>
 
       <td class="event-date-start event-content">
