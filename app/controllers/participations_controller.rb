@@ -23,6 +23,7 @@ class ParticipationsController < ApplicationController
       if @participation.save
         format.html { redirect_to @match, notice: 'Participation was successfully created.' }
         format.json { render :show, status: :created, location: @match }
+        format.js { }
       else
         format.html { redirect_to @match, notice: 'The team could not be added.' }
         format.json { render json: @match.errors, status: :unprocessable_entity }
