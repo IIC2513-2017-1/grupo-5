@@ -1,0 +1,5 @@
+console.log("used js");
+var newRow = "<tr><td><%= Team.find(@participation.team_id).name %></td><td>No results yet</td><td><%=link_to 'Edit', edit_participation_path(@participation)%></td></tr>";
+$(".participation-table").append(newRow);
+//<td><%=link_to 'Edit', edit_participation_path(@participation)%></td>
+//<td><%=link_to 'Remove', @participation, method: :delete, data: { confirm: 'Are you sure?' }%></td>

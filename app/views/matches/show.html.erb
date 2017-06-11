@@ -40,7 +40,7 @@
       <th colspan="2"></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="participation-table">
     <% Participation.where(match_id: @match.id).each do |participation| %>
       <% t = Team.where(id: participation.team_id).first %>
       <tr>
