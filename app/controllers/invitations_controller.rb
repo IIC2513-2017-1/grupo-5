@@ -19,7 +19,9 @@ class InvitationsController < ApplicationController
     respond_to do |format|
       if @invitation.save
         format.html { redirect_to @event, notice: 'Invitation was successfully sended.' }
-        format.json { render :show, status: :created, location: @event }
+        format.json do
+          render json: {invited_id: @invitation.user_id, invitee_id: current_user.id, event_id: @event.id, invitation_id: @invitation.id}
+        end
       else
         format.html { redirect_to @event, notice: 'The invitation could not be sended.' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -34,7 +36,9 @@ class InvitationsController < ApplicationController
     @invitation.destroy
     respond_to do |format|
       format.html { redirect_to @event, notice: 'Invitation was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json do
+        render json: {uninvited_id: @invitation.user_id, invitee_id: current_user.id, event_id: @event.id, invitation_id: @invitation.id}
+      end
     end
   end
 
