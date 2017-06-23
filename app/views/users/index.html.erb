@@ -26,11 +26,14 @@
               <strong>Coins:</strong>
               <%= user.coins %>
             </div>
-
           </div>
           <div class="user-actions user-element">
-            <%= link_to 'Show', user %>
-            <%= following_button(user) %>
+            <div class="show-action action-element">
+              <a class="link-button" href= <%="users/"+user.id.to_s%> >Show</a>
+            </div>
+            <div class="follow-action action-element">
+              <%= following_button(user) %>
+            </div>
           </div>
         </div>
       <% end %>

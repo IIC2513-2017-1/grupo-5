@@ -1,13 +1,16 @@
+@import "palette.scss";
+
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//USER SHOW
 
 /* Style the tab */
 div.tab {
     overflow: hidden;
-    border:1px solid #ccc;
-    background-color: #f1f1f1;
+    border:1px solid $accent-color;
+    background-color: $dark-primary-color;
     margin-top: 10px;
 }
 
@@ -20,29 +23,35 @@ div.tab button {
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
+    color: $primary-text-color;
 }
 
 /* Change background color of buttons on hover */
 div.tab button:hover {
-    background-color: #ddd;
+    background-color: $accent-color;
 }
 
 /* Create an active/current tablink class */
 div.tab button.active {
-    background-color: #ccc;
+    background-color: $accent-color;
 }
 
 /* Style the tab content */
 .tabcontent {
     width: 100%;
     display: none;
-    border: 1px solid #ccc;
+    border: 1px solid $accent-color;
     border-top: none;
+    background-color: $accent-color;
+    margin-bottom: 10px;
 }
 
 .tab-headers th{
-  border: 1px solid #ccc;
+    background-color: $dark-primary-color;
+    color: $primary-text-color;
 }
+
+//USER INDEX
 
 .users-list{
   display: grid;
@@ -51,19 +60,18 @@ div.tab button.active {
 }
 
 .user-content{
-  border: 1px solid #ddd;
   text-align: center;
+  background-color: $dark-primary-color;
 }
 
 .user-stream-item{
-  border: 1px solid #ddd;
   border-radius: 20px;
   padding: 10px;
   width: 60%;
   height: 100px;
   display: grid;
-  grid-template-columns: 25% 50% 25%;
-  background-color: #ddd;
+  grid-template-columns: 25% 50% 20%;
+  background-color: $dark-primary-color;
 }
 
 .user-element{
@@ -79,4 +87,22 @@ div.tab button.active {
   height: 100%;
   display: grid;
   grid-template-rows: 33% 33% 33%;
+}
+
+.user-actions{
+  display: block;
+  width: 100%;
+}
+
+.user-actions div{
+  width: 100%;
+  display: flex;
+  text-align: center;
+  margin: 1px;
+}
+
+.user-actions div a{
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }

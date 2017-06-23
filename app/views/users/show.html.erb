@@ -24,13 +24,15 @@
   <%= @user.coins %>
 </p>
 
-<% if current_user && @user.id == current_user.id %>
-<%= link_to 'Edit', edit_user_path(@user)%> |
-<% end %>
-<%= link_to 'Back', users_path %>
+<div class="Options">
+  <% if current_user && @user.id == current_user.id %>
+    <%= link_to 'Edit', edit_user_path(@user), class: "link-button"%>
+  <% end %>
+  <%= link_to 'Back', users_path, class: "link-button" %>
+</div>
+
 
 <% if current_user && @user.id == current_user.id %>
-
   <div class="tab">
     <button class="tablinks defaultOpen" data-tab="actual-bets">Bets</button>
     <button class="tablinks" data-tab="old-bets">History</button>
