@@ -1,42 +1,59 @@
+
+@import "palette.scss";
+
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+//INDEX EVENT
+
+$column-space-percents: 10% 25% 15% 15% 15% 20%;
+
 .event-table{
   width: 100%;
-  border: 1px solid #bbb;
+  border: 1px solid $accent-color;
 }
 
-.event-table-header th{
-  border: 1px solid #bbb;
+.event-table-headers{
+  width: 100%;
+  display: grid;
+  grid-template-columns: $column-space-percents;
+  background-color: $default-primary-color;
 }
 
-.event-content{
-  border: 1px solid #ddd;
+.event-table-headers div{
+  height: 100%;
   text-align: center;
+  border: 1px solid $accent-color;
+}
+
+.event-table-row{
+  width: 100%;
+  display: grid;
+  grid-template-columns: $column-space-percents;
+  background-color: $default-primary-color;
+}
+
+.event-table-row div{
+  height: 100%;
+  text-align: center;
+  background-color: $light-primary-color;
+  border: 1px solid $accent-color;
 }
 
 .event-action-subtable{
   width: 100%;
+  height: 100%;
+  display: flex;
 }
 
-.subsection td:hover{
-  border: 1px solid #aaa;
-}
 
-.subsection td{
-  background-color: #eee;
-  border: 1px solid #ddd;
-  text-align: center;
-}
 
-.link-button{
-  text-decoration: none;
-  color: black;
-}
+//SHOW EVENT
 
 .match-teams-table{
-  border: 1px solid #bbb;
+  border: 1px solid $dark-primary-color;
   width: 100%;
 }
 
