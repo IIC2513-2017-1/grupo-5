@@ -1,71 +1,74 @@
-<div class="events">
-<h2>Information</h2>
+<div class="page-content">
+
+  <div class="events">
+    <h2>Information</h2>
 
 
-<p id="notice"><%= notice %></p>
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <%= @event.event_type %> event
-</p>
+    <p>
+      <%= @event.event_type %> event
+    </p>
 
-<p>
-  <strong>Gestor:</strong>
-  <%= User.where(id: @event.user_id).first.email %>
-  <% if need_request?(@event) %>
-  |
-  <%= following_button(User.find(@event.user_id)) %>
-  <% end %>
-</p>
+    <p>
+      <strong>Gestor:</strong>
+      <%= User.where(id: @event.user_id).first.email %>
+      <div class="Options">
+        <% if need_request?(@event) %>
+        <%= following_button(User.find(@event.user_id)) %>
+        <% end %>
+      </div>
+    </p>
 
-<p>
-  <%= if @event.private; 'Private'
+    <p>
+      <%= if @event.private; 'Private'
       else; 'Public'
       end %>
-</p>
+    </p>
 
-<p>
-  <strong>Start Date:</strong>
-  <%= @event.date_start %>
-</p>
+    <p>
+      <strong>Start Date:</strong>
+      <%= @event.date_start %>
+    </p>
 
-<p>
-  <strong>End Date:</strong>
-  <%= @event.date_end %>
-</p>
+    <p>
+      <strong>End Date:</strong>
+      <%= @event.date_end %>
+    </p>
+    <% if current_user && current_user.id == @event.user_id %>
+      <%= link_to 'Edit', edit_event_path(@event), class: "link-button" %>
+    <% end %>
+    <h2>Matches</h2>
 
-<%= link_to 'Edit', edit_event_path(@event) if current_user && current_user.id == @event.user_id %>
+    <div class="event-matches-section">
 
-<h2>Matches</h2>
+      <ul class="matches-list">
 
-<div class="event-matches-section">
+        <% Match.where(event_id: @event.id).each do |match| %>
+        <%= render 'matches/preview', match: match %>
+        <% end %>
 
-  <ul class="matches-list">
+      </ul>
+    </div>
 
-    <% Match.where(event_id: @event.id).each do |match| %>
-      <%= render 'matches/preview', match: match %>
+
+    <% if current_user && current_user.id == @event.user_id%>
+    <br/>
+    <strong>New Match:</strong>
+    <%= render :partial => 'matches/form', event: @event %>
     <% end %>
 
-  </ul>
-</div>
+    <% if @event.private && current_user && @event.user_id == current_user.id %>
+    <h2>Invitations</h2>
 
-
-<% if current_user && current_user.id == @event.user_id%>
-  <br/>
-  <strong>New Match:</strong>
-  <%= render :partial => 'matches/form', event: @event %>
-<% end %>
-
-<% if @event.private && current_user && @event.user_id == current_user.id %>
-  <h2>Invitations</h2>
-
-  <table class="invitations-table">
-    <tr class="invitation-headers">
-      <th>Name</th>
-      <th>Mail</th>
-      <th>Status</th>
-      <th>Action</th>
-    </tr>
-    <% Follow.where(follower_id: current_user.id).each do |foll| %>
+    <table class="invitations-table">
+      <tr class="invitation-headers">
+        <th>Name</th>
+        <th>Mail</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      <% Follow.where(follower_id: current_user.id).each do |foll| %>
       <% other_user = foll.followed %>
       <% back = Follow.where(follower_id: other_user.id, followed_id: current_user.id).first %>
       <% status = back ? 'Friends' : 'Following' %>
@@ -84,16 +87,19 @@
           <%= invite_button(other_user, @event) %>
         </td>
       </tr>
+      <% end %>
+    </table>
+
     <% end %>
-  </table>
 
-<% end %>
+    <div class="Options">
 
-<% if current_user %>
-  <br/>
-  <%= button_to 'Download results', {:controller => 'eventresults', :action => "create", :event_id => @event.id}, :method => :post %>
+      <% if current_user %>
+      <%= button_to 'Download results', {:controller => 'eventresults', :action => "create", :event_id => @event.id}, :method => :post, class: "link-button" %>
+      <% end %>
 
-<% end %>
+      <%= link_to 'Back', events_path, class: "link-button" %>
+    </div>
 
-<%= link_to 'Back', events_path %>
+  </div>
 </div>

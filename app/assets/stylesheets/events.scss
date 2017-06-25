@@ -12,7 +12,7 @@ $column-space-percents: 10% 25% 15% 15% 15% 20%;
 
 .event-table{
   width: 100%;
-  border: 1px solid $accent-color;
+  border: 1px solid $dark-primary-color;
 }
 
 .event-table-headers{
@@ -25,21 +25,21 @@ $column-space-percents: 10% 25% 15% 15% 15% 20%;
 .event-table-headers div{
   height: 100%;
   text-align: center;
-  border: 1px solid $accent-color;
+  border: 1px solid $dark-primary-color;
 }
 
 .event-table-row{
   width: 100%;
   display: grid;
   grid-template-columns: $column-space-percents;
-  background-color: $default-primary-color;
+  background-color: $dark-primary-color;
 }
 
 .event-table-row div{
   height: 100%;
   text-align: center;
   background-color: $light-primary-color;
-  border: 1px solid $accent-color;
+  border: 1px solid $dark-primary-color;
 }
 
 .event-action-subtable{
@@ -48,12 +48,17 @@ $column-space-percents: 10% 25% 15% 15% 15% 20%;
   display: flex;
 }
 
+.event-action-subtable a{
+  border-right: 1px solid $dark-primary-color;
+}
+
 
 
 //SHOW EVENT
 
+
 .match-teams-table{
-  border: 1px solid $dark-primary-color;
+  background-color: $light-primary-color;
   width: 100%;
 }
 
@@ -69,24 +74,17 @@ $column-space-percents: 10% 25% 15% 15% 15% 20%;
 
 .matches-item-information{
   padding: 10px;
-  padding-top: 0px;
+  background-color: $dark-primary-color;
   border-radius: 10px;
   list-style-type: none;
-  border: 2px solid #ccc;
   width: 50%;
 }
 
 .match-information{
-  border: 1px solid #bbb;
   width: 100%;
 }
 
-.info-headers th{
-  text-align: center;
-  border: 1px solid #bbb;
-}
 
-.info-data td{
-  border: 1px solid #ddd;
-  text-align: center;
+.info-data{
+  float: left;
 }

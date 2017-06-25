@@ -13,6 +13,19 @@ body {
   overflow-y: scroll;
 }
 
+.header-link{
+  text-decoration: none;
+  color: $primary-text-color;
+  background-color: $accent-color;
+  width: 100%;
+  float: left;
+  margin-bottom: 1px;
+}
+
+.header-link:hover, .header-link:active{
+  background-color: $default-primary-color;
+}
+
 header {
   position: absolute;
   top: 0;
@@ -20,8 +33,6 @@ header {
   padding: 10px;
   box-sizing: border-box;
   background: $dark-primary-color;
-  border-bottom: 1px solid $accent-color;
-  box-shadow: 0px 0px 5px 1px $accent-color;
 }
 
 footer {
@@ -61,7 +72,7 @@ nav#main_menu {
     text-decoration: none;
     color: $primary-text-color;
     font-size: 18px;
-    border-right: 1px solid $accent-color;
+    border-right: 1px solid $divider-color;
   }
   a:hover {
     color: $accent-color;
@@ -78,6 +89,15 @@ nav#main_menu {
   text-align: center;
   width: 99px;
   height: 28px;
+}
+
+div.page-content{
+  width: 80%;
+  height: 100%;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 #license, #project {

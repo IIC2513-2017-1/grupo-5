@@ -1,16 +1,17 @@
 
-<div class="event-table">
-  <div class="event-table-headers">
-    <div>Type</div>
-    <div>Event manager</div>
-    <div>Privacity</div>
-    <div>Start date</div>
-    <div>End date</div>
-    <div>Actions</div>
-  </div>
+<div class="page-content">
+  <div class="event-table">
+    <div class="event-table-headers">
+      <div>Type</div>
+      <div>Event manager</div>
+      <div>Privacity</div>
+      <div>Start date</div>
+      <div>End date</div>
+      <div>Actions</div>
+    </div>
 
 
-  <% @events.each do |event| %>
+    <% @events.each do |event| %>
     <div class="event-table-row">
 
       <div>
@@ -23,9 +24,9 @@
 
       <div>
         <% if event.private%>
-          Private
+        Private
         <% else %>
-          Public
+        Public
         <% end %>
       </div>
 
@@ -40,16 +41,18 @@
       <div class="event-action-subtable">
         <%= link_to 'Show', event, class: "link-button"%>
         <% if current_user && current_user.id == event.user_id%>
-          <%= link_to 'Edit', edit_event_path(event), class: "link-button"%>
-          <%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button"%>
+        <%= link_to 'Edit', edit_event_path(event), class: "link-button"%>
+        <%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button"%>
         <% end %>
       </div>
 
     </div>
-  <% end %>
+    <% end %>
 
-</div>
+  </div>
 
-<div class="Options">
-  <%= link_to 'New Event', new_event_path, class: "link-button" %>
+  <div class="Options">
+    <%= link_to 'New Event', new_event_path, class: "link-button" %>
+  </div>
+
 </div>

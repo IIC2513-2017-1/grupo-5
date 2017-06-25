@@ -3,32 +3,23 @@
 
   <h3>Match Info</h3>
 
-  <table class="match-information">
+  <div class="match-information">
 
-    <tr class="info-headers">
-      <th>
-        Match name
-      </th>
-      <th>
-        Bet deadline
-      </th>
-      <th>
-        Match date
-      </th>
-    </tr>
-
-    <tr class="info-data">
-      <td>
-        <%= match.name %>
-      </td>
-      <td>
-        <%= match.bet_date %>
-      </td>
-      <td>
-        <%= match.match_date %>
-      </td>
-    </tr>
-  </table>
+    <div class="match-name info-data">
+      <strong>Name:</strong> <%= match.name %>
+    </div>
+    <br>
+    <br>
+    <div class="bet-date info-data">
+      <strong>Bet date: </strong> <%= match.bet_date %>
+    </div>
+    <br>
+    <br>
+    <div class="match-date info-data">
+      <strong>Match date:</strong> <%= match.match_date %>
+    </div>
+    <br>
+  </div>
 
   <h3>Teams</h3>
 
@@ -56,11 +47,14 @@
     <% end %>
   </table>
 
-  <%= link_to 'Show', match %>
-  <% if (current_user && current_user.id == @event.user_id && match.state == 0) %>
-    | <%= link_to 'Edit', edit_match_path(match) %>
-    | <%= link_to 'Delete', match, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
+  <div class="Options">
+    <%= link_to 'Show', match, class: "link-button" %>
+    <% if (current_user && current_user.id == @event.user_id && match.state == 0) %>
+    <%= link_to 'Edit', edit_match_path(match), class: "link-button"  %>
+    <%= link_to 'Delete', match, method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button" %>
+    <% end %>
+
+  </div>
 
 </li>
 
