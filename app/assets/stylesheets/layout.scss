@@ -1,8 +1,15 @@
 @import "palette.scss";
 
+
 html, body {
   margin: 0;
   padding: 0;
+}
+
+div.box{
+  background-color: $dark-primary-color;
+  border-radius: 20px;
+  padding: 10px;
 }
 
 body {
@@ -27,7 +34,7 @@ body {
 }
 
 header {
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   padding: 10px;

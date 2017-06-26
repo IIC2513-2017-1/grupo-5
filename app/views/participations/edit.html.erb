@@ -1,5 +1,10 @@
-<h1>Editing Participation</h1>
+<div class="page-content">
+  <h1>Editing Participation</h1>
 
-<%= render 'form2', participation: @participation %>
+  <%= render 'form2', participation: @participation %>
+  <div class="Options">
+    <%= link_to 'Back', matches_path(@participation.match_id) , class: "link-button"%>
 
-<%= link_to 'Back', matches_path(@participation.match_id) %>
+  </div>
+
+</div>

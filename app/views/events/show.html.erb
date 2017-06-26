@@ -35,71 +35,79 @@
       <strong>End Date:</strong>
       <%= @event.date_end %>
     </p>
-    <% if current_user && current_user.id == @event.user_id %>
-      <%= link_to 'Edit', edit_event_path(@event), class: "link-button" %>
-    <% end %>
+    <div class="Options">
+      <% if current_user && current_user.id == @event.user_id %>
+        <%= link_to 'Edit', edit_event_path(@event), class: "link-button" %>
+      <% end %>
+    </div>
+
     <h2>Matches</h2>
 
     <div class="event-matches-section">
 
-      <ul class="matches-list">
+      <div class="matches-list">
 
         <% Match.where(event_id: @event.id).each do |match| %>
         <%= render 'matches/preview', match: match %>
         <% end %>
 
-      </ul>
+      </div>
     </div>
 
 
     <% if current_user && current_user.id == @event.user_id%>
-    <br/>
-    <strong>New Match:</strong>
-    <%= render :partial => 'matches/form', event: @event %>
+      <br/>
+      <%= render :partial => 'matches/form', event: @event %>
     <% end %>
 
     <% if @event.private && current_user && @event.user_id == current_user.id %>
-    <h2>Invitations</h2>
 
-    <table class="invitations-table">
-      <tr class="invitation-headers">
-        <th>Name</th>
-        <th>Mail</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-      <% Follow.where(follower_id: current_user.id).each do |foll| %>
-      <% other_user = foll.followed %>
-      <% back = Follow.where(follower_id: other_user.id, followed_id: current_user.id).first %>
-      <% status = back ? 'Friends' : 'Following' %>
-      <tr class="invitation-body">
-        <td class="invitation-name invitation-data">
-          <%= other_user.first_name %>
-          <%= other_user.last_name %>
-        </td>
-        <td class="invitation-email invitation-data">
-          <%= other_user.email %>
-        </td>
-        <td class="invitation-status invitation-data">
-          <%= status %>
-        </td>
-        <td class="invitation-button invitation-data">
-          <%= invite_button(other_user, @event) %>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+      <br>
+
+      <div class="invitations-box box">
+
+        <h2>Invitations</h2>
+
+        <div class="invitations-table">
+          <div class="invitation-headers">
+            <div>Name</div>
+            <div>Mail</div>
+            <div>Status</div>
+            <div>Action</div>
+          </div>
+          <% Follow.where(follower_id: current_user.id).each do |foll| %>
+            <% other_user = foll.followed %>
+            <% back = Follow.where(follower_id: other_user.id, followed_id: current_user.id).first %>
+            <% status = back ? 'Friends' : 'Following' %>
+            <div class="invitation-body">
+              <div class="invitation-name invitation-data">
+                <%= other_user.first_name %>
+                <%= other_user.last_name %>
+              </div>
+              <div class="invitation-email invitation-data">
+                <%= other_user.email %>
+              </div>
+              <div class="invitation-status invitation-data">
+                <%= status %>
+              </div>
+              <div class="invitation-action-subtable">
+                <%= invite_button(other_user, @event) %>
+              </div>
+            </div>
+          <% end %>
+        </table>
+      </div>
 
     <% end %>
 
-    <div class="Options">
 
-      <% if current_user %>
-      <%= button_to 'Download results', {:controller => 'eventresults', :action => "create", :event_id => @event.id}, :method => :post, class: "link-button" %>
-      <% end %>
+  </div>
+  <div class="Options">
 
-      <%= link_to 'Back', events_path, class: "link-button" %>
-    </div>
+    <% if current_user %>
+    <%= button_to 'Download results', {:controller => 'eventresults', :action => "create", :event_id => @event.id}, :method => :post, class: "link-button" %>
+    <% end %>
 
+    <%= link_to 'Back', events_path, class: "link-button" %>
   </div>
 </div>

@@ -1,58 +1,66 @@
 
 <div class="page-content">
-  <div class="event-table">
-    <div class="event-table-headers">
-      <div>Type</div>
-      <div>Event manager</div>
-      <div>Privacity</div>
-      <div>Start date</div>
-      <div>End date</div>
-      <div>Actions</div>
+
+  <div class="event-box box">
+
+    <h2>Events</h2>
+
+    <div class="event-table">
+      <div class="event-table-headers">
+        <div>Type</div>
+        <div>Event manager</div>
+        <div>Privacity</div>
+        <div>Start date</div>
+        <div>End date</div>
+        <div>Actions</div>
+      </div>
+
+
+      <% @events.each do |event| %>
+      <div class="event-table-row">
+
+        <div>
+          <%= event.event_type %>
+        </div>
+
+        <div>
+          <%= User.find(event.user_id).email %>
+        </div>
+
+        <div>
+          <% if event.private%>
+          Private
+          <% else %>
+          Public
+          <% end %>
+        </div>
+
+        <div>
+          <%= event.date_start %>
+        </div>
+
+        <div>
+          <%= event.date_end %>
+        </div>
+
+        <div class="event-action-subtable">
+          <%= link_to 'Show', event, class: "link-button"%>
+          <% if current_user && current_user.id == event.user_id%>
+          <%= link_to 'Edit', edit_event_path(event), class: "link-button"%>
+          <%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button"%>
+          <% end %>
+        </div>
+
+      </div>
+      <% end %>
+
     </div>
 
-
-    <% @events.each do |event| %>
-    <div class="event-table-row">
-
-      <div>
-        <%= event.event_type %>
-      </div>
-
-      <div>
-        <%= User.find(event.user_id).email %>
-      </div>
-
-      <div>
-        <% if event.private%>
-        Private
-        <% else %>
-        Public
-        <% end %>
-      </div>
-
-      <div>
-        <%= event.date_start %>
-      </div>
-
-      <div>
-        <%= event.date_end %>
-      </div>
-
-      <div class="event-action-subtable">
-        <%= link_to 'Show', event, class: "link-button"%>
-        <% if current_user && current_user.id == event.user_id%>
-        <%= link_to 'Edit', edit_event_path(event), class: "link-button"%>
-        <%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button"%>
-        <% end %>
-      </div>
-
+    <div class="Options">
+      <%= link_to 'New Event', new_event_path, class: "link-button" %>
     </div>
-    <% end %>
 
   </div>
 
-  <div class="Options">
-    <%= link_to 'New Event', new_event_path, class: "link-button" %>
-  </div>
 
 </div>

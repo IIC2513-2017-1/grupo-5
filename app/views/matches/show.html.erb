@@ -1,94 +1,116 @@
-<p id="notice"><%= notice %></p>
+<div class="page-content">
 
-<p>
-  <strong>Match date:</strong>
-  <%= @match.match_date %>
-</p>
+  <h2>Match Information</h2>
 
-<p>
-  <strong>Bet date:</strong>
-  <%= @match.bet_date %>
-</p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @match.name %>
-</p>
+  <p>
+    <strong>Match date:</strong>
+    <%= @match.match_date %>
+  </p>
 
-<p>
-  <strong>State:</strong>
-  <%= if @match.state == 0; 'Bets open'
-  elsif @match.state == 1; 'Bets Closed'
-  else ; 'Closed Match'
-  end %>
-</p>
+  <p>
+    <strong>Bet date:</strong>
+    <%= @match.bet_date %>
+  </p>
 
-<% if current_user && current_user.id == Event.find(@match.event_id).user_id && @match.state == 0%>
-  <%= link_to 'Edit', edit_match_path %>
-<% end %>
+  <p>
+    <strong>Name:</strong>
+    <%= @match.name %>
 
-<h1>Teams</h1>
+  </p>
+  <p>
+    <strong>State:</strong>
+    <%= if @match.state == 0; 'Bets open'
+    elsif @match.state == 1; 'Bets Closed'
+    else ; 'Closed Match'
+    end %>
+  </p>
 
-<table>
-  <style>
-
-  </style>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Result</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-  <tbody class="participation-table">
-    <% Participation.where(match_id: @match.id).each do |participation| %>
-      <% t = Team.where(id: participation.team_id).first %>
-      <tr>
-        <td><%= t.name %></td>
-        <td><%= if participation.placing == -1; 'No results yet'
-        else participation.placing
-        end %></td>
-        <td><%= link_to 'Edit', edit_participation_path(participation) if current_user && current_user.id == @event.user_id %></td>
-        <td><%= link_to 'Remove', participation, method: :delete, data: { confirm: 'Are you sure?' } if current_user && current_user.id == @event.user_id %></td>
-      </tr>
+  <div class="Options">
+    <% if current_user && current_user.id == Event.find(@match.event_id).user_id && @match.state == 0%>
+    <%= link_to 'Edit', edit_match_path, class: "link-button" %>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
 
+  <div class="teams-box box">
 
-<% if current_user && current_user.id == @event.user_id && @match.state == 0%>
-  <br/>
-  <strong>Add Team:</strong>
-  <%= render :partial => 'participations/form', match: @match %>
-<% end %>
+    <h3>Teams</h3>
 
-<% if current_user && current_user.id == @event.user_id && @match.state == 0%>
-  <%= button_to 'Close match', {:controller => "placings", :action => "create", :match_id => @match.id}, :method => :post %>
-<% end %>
+    <div class="match-teams-table">
 
-<% if current_user && @match.state == 1 %>
-  <br/>
-  <%= button_to 'Download results', {:controller => 'informations', :action => "create", :match_id => @match.id, :event_id => @event.id}, :method => :post %>
-<% end %>
+      <div class="match-teams-headers">
+
+        <div>Name</div>
+        <div>Result</div>
+        <div>Actions</div>
+
+      </div>
 
 
-<% ev = Event.find(@match.event_id) %>
-<% if current_user && @match.state == 0 && ev.user_id != current_user.id %>
-  <% good = true %>
+        <% Participation.where(match_id: @match.id).each do |participation| %>
+          <% t = Team.where(id: participation.team_id).first %>
+          <div class="match-team-content">
+            <div class="match-team-name attribute">
+              <%= t.name %>
+            </div>
+            <div class="match-team-result attribute">
+              <% if participation.placing == -1 %>
+                No reults yet
+              <% else %>
+                <%= participation.placing %>
+              <% end %>
+            </div>
+            <div class="match-team-actions-subtable">
+                <%= link_to 'Add Result', edit_participation_path(participation), class: "link-button" %>
+                <%= link_to 'Remove', participation, method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button" %>
+            </div>
 
-  <% if ev.private %>
-    <% inv = Invitation.where(user_id: current_user.id, event_id: ev.id).first %>
+          </div>
+        <% end %>
+    </div>
 
-    <% if !inv %>
-      <% good = false %>
+  </div>
+
+
+  <% if current_user && current_user.id == @event.user_id && @match.state == 0%>
+    <br/>
+    <strong>Add Team:</strong>
+    <%= render :partial => 'participations/form', match: @match %>
+  <% end %>
+
+  <% if current_user && current_user.id == @event.user_id && @match.state == 0%>
+    <%= button_to 'Close match', {:controller => "placings", :action => "create", :match_id => @match.id}, :method => :post %>
+  <% end %>
+
+  <% if current_user && @match.state == 1 %>
+    <br/>
+    <%= button_to 'Download results', {:controller => 'informations', :action => "create", :match_id => @match.id, :event_id => @event.id}, :method => :post %>
+  <% end %>
+
+
+  <% ev = Event.find(@match.event_id) %>
+  <% if current_user && @match.state == 0 && ev.user_id != current_user.id %>
+    <% good = true %>
+
+    <% if ev.private %>
+      <% inv = Invitation.where(user_id: current_user.id, event_id: ev.id).first %>
+
+      <% if !inv %>
+        <% good = false %>
+      <% end %>
+    <% end %>
+
+    <% if good %>
+      <h2>Create Bet</h2>
+      <%= render :partial => 'bets/form', match: @match %>
     <% end %>
   <% end %>
 
-  <% if good %>
-    <h2>Create Bet</h2>
-    <%= render :partial => 'bets/form', match: @match %>
-  <% end %>
-<% end %>
+  <div class="Options">
+    <%= link_to 'Event', event_path(@match.event_id), class: "link-button" %>
+  </div>
 
-<%= link_to 'Event', event_path(@match.event_id) %>
+
+</div>

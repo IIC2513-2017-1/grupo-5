@@ -1,3 +1,44 @@
+@import "palette.scss";
+
 // Place all the styles related to the matches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new-match-box{
+  width: 25%;
+}
+
+.match-teams-headers{
+  background-color: $default-primary-color;
+  display: grid;
+  grid-template-columns: 33% 33% 34%;
+}
+
+.match-teams-headers div{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.match-team-content{
+  background-color: $light-primary-color;
+  display: grid;
+  grid-template-columns: 33% 33% 34%;
+  border-bottom: 1px solid $default-primary-color;
+}
+
+.match-team-content div{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.match-team-actions-subtable{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.match-team-actions-subtable a{
+  border-left: 1px solid $dark-primary-color;
+}
