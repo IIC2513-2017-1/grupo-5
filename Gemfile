@@ -33,6 +33,7 @@ gem 'figaro'
 gem 'rubyzip'
 gem 'axlsx'
 gem 'axlsx_rails'
+gem 'will_paginate'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

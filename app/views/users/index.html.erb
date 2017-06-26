@@ -7,39 +7,7 @@
   <div class="users">
 
     <div class="users-list">
-      <% @users.each do |user| %>
-      <% if !current_user || user.id != current_user.id %>
-      <div class="user-stream-item">
-        <div class="user-image user-element">
-          <%= image_tag user.avatar.url(:thumb) %>
-        </div>
-        <div class="user-information user-element">
-
-          <div class="user-email user-attribute">
-            <strong>Email:</strong>
-            <%= user.email %>
-          </div>
-          <div class="user-name user-attribute">
-            <strong>Name:</strong>
-            <%= user.first_name %>
-            <%= user.last_name %>
-          </div>
-          <div class="user-email user-attribute">
-            <strong>Coins:</strong>
-            <%= user.coins %>
-          </div>
-        </div>
-        <div class="user-actions user-element">
-          <div class="show-action action-element">
-            <a class="link-button" href= <%="users/"+user.id.to_s%> >Show</a>
-          </div>
-          <div class="follow-action action-element">
-            <%= following_button(user) %>
-          </div>
-        </div>
-      </div>
-      <% end %>
-      <% end %>
+      <%= render 'user' %>
     </div>
   </div>
 
