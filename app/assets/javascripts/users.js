@@ -21,4 +21,10 @@ $(document).on('turbolinks:load', function () {
     link.addClass('active');
   });
   $('.defaultOpen').click();
+  $(document).delegate(".pagination a", "click", function() {
+    //alert("HOLA");
+    //$(".pagination").html("Page is loading...");
+    $.get(this.href, null, null, "script");
+    return false;
+  });
 });
