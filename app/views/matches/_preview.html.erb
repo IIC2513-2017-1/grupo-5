@@ -1,5 +1,5 @@
 
-<li class="matches-item-information">
+<div class="matches-item-information">
 
   <h3>Match Info</h3>
 
@@ -23,39 +23,39 @@
 
   <h3>Teams</h3>
 
-  <table class="match-teams-table">
+  <div class="match-teams-table">
 
-    <tr class="teams-headers">
-      <th>Team Names</th>
-      <th>Placings</th>
-    </tr>
+    <div class="teams-headers">
+      <div>Team Names</div>
+      <div>Placings</div>
+    </div>
 
     <% Participation.where(match_id: match.id).each do |participation| %>
       <% t = Team.where(id: participation.team_id).first %>
-      <tr class="team-content">
-        <td class="team-name attribute">
+      <div class="team-content">
+        <div class="team-name attribute">
           <%= t.name %>
-        </td>
-        <td class="team-result attribute">
+        </div>
+        <div class="team-result attribute">
           <% if participation.placing == -1 %>
             No reults yet
           <% else %>
             <%= participation.placing %>
           <% end %>
-        </td>
-      </tr>
+        </div>
+      </div>
     <% end %>
-  </table>
+  </div>
 
   <div class="Options">
     <%= link_to 'Show', match, class: "link-button" %>
     <% if (current_user && current_user.id == @event.user_id && match.state == 0) %>
-    <%= link_to 'Edit', edit_match_path(match), class: "link-button"  %>
-    <%= link_to 'Delete', match, method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button" %>
+      <%= link_to 'Edit', edit_match_path(match), class: "link-button"  %>
+      <%= link_to 'Delete', match, method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button" %>
     <% end %>
 
   </div>
 
-</li>
+</div>
 
 <br>

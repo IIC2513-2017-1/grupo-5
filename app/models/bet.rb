@@ -14,7 +14,7 @@ class Bet < ApplicationRecord
 
   def bet_before_expiration_date?
     current_match = Match.find(match_id)
-    if current_match.bet_date < Time.now
+    if current_match.bet_date < Date.today
       errors.add :base, "Match bets has already been closed"
     end
   end

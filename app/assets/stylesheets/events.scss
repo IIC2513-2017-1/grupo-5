@@ -8,11 +8,10 @@
 
 //INDEX EVENT
 
-$column-space-percents: 10% 25% 15% 15% 15% 20%;
+$column-space-percents: 15% 30% 10% 15% 15% 15%;
 
 .event-table{
   width: 100%;
-  border: 1px solid $dark-primary-color;
 }
 
 .event-table-headers{
@@ -25,7 +24,6 @@ $column-space-percents: 10% 25% 15% 15% 15% 20%;
 .event-table-headers div{
   height: 100%;
   text-align: center;
-  border: 1px solid $dark-primary-color;
 }
 
 .event-table-row{
@@ -33,13 +31,13 @@ $column-space-percents: 10% 25% 15% 15% 15% 20%;
   display: grid;
   grid-template-columns: $column-space-percents;
   background-color: $dark-primary-color;
+  border-bottom: 1px solid $dark-primary-color;
 }
 
 .event-table-row div{
   height: 100%;
   text-align: center;
   background-color: $light-primary-color;
-  border: 1px solid $dark-primary-color;
 }
 
 .event-action-subtable{
@@ -49,7 +47,7 @@ $column-space-percents: 10% 25% 15% 15% 15% 20%;
 }
 
 .event-action-subtable a{
-  border-right: 1px solid $dark-primary-color;
+  border-left: 1px solid $dark-primary-color;
 }
 
 
@@ -62,13 +60,28 @@ $column-space-percents: 10% 25% 15% 15% 15% 20%;
   width: 100%;
 }
 
-.teams-headers th{
-  text-align: center;
-  border: 1px solid #bbb;
+.teams-headers{
+  background-color: $default-primary-color;
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
-.team-content td{
-  border: 1px solid #ddd;
+.teams-headers div{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.team-content{
+  background-color: $light-primary-color;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border-bottom: 1px solid $default-primary-color;
+}
+
+.team-content div{
+  width: 100%;
+  height: 100%;
   text-align: center;
 }
 

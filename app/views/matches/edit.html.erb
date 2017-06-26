@@ -1,5 +1,11 @@
-<h1>Editing Match</h1>
 
-<%= render 'form2', match: @match %>
+<div class="page-content">
+  <h1>Editing Match</h1>
 
-<%= link_to 'Show', match_path(@match.id) %>
+  <%= render 'form2', match: @match %>
+
+  <div class="Options">
+    <%= link_to 'Show', match_path(@match.id), class: "link-button" %>
+  </div>
+
+</div>

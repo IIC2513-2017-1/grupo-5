@@ -3,9 +3,9 @@ module EventsHelper
     return unless current_user && current_user.role != 1
     inv = Invitation.where(user_id: user.id, event_id: event.id).first
     if inv
-      link_to 'Uninvite', invitation_path(inv), method: 'delete', remote: true, data: {type: 'json', 'user-id': user.id}
+      link_to 'Uninvite', invitation_path(inv), method: 'delete', remote: true, data: {type: 'json', 'user-id': user.id}, class: "link-button"
     else
-      link_to 'Invite', event_invitations_path(event_id: event.id, user_id: user.id), method: 'post', remote: true, data: {type: 'json', 'user-id': user.id}
+      link_to 'Invite', event_invitations_path(event_id: event.id, user_id: user.id), method: 'post', remote: true, data: {type: 'json', 'user-id': user.id}, class: "link-button"
     end
   end
 

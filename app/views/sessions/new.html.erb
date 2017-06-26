@@ -1,6 +1,7 @@
-<h1>Entra con tus credenciales</h1>
-<div id="login-form">
-  <%= form_for :session, url: session_path do |f| %>
+<div class="page-content">
+  <h1>Entra con tus credenciales</h1>
+  <div id="login-form">
+    <%= form_for :session, url: session_path do |f| %>
     <div class = "field">
       <%= f.label :email %>
       <%= f.text_field :email %>
@@ -12,5 +13,6 @@
     <div class = "actions">
       <%= f.submit 'Login' %>
     </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
