@@ -51,9 +51,34 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+  background: $dark-primary-color;
+}
+
+#else{
   padding: 10px;
+  top: 0;
+  width: 100%;
   box-sizing: border-box;
   background: $dark-primary-color;
+}
+
+#alert-bar{
+  width: 99%;
+  height: 35px;
+  background-color: orange;
+  padding-left: 1%;
+  display: grid;
+  grid-template-columns: 95% 5%;
+}
+
+#close-button{
+  height: 35px;
+  vertical-align: middle;
+}
+
+#notice{
+  height: 35px;
+  vertical-align: middle;
 }
 
 footer {
