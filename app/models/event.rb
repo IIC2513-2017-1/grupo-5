@@ -13,4 +13,12 @@ class Event < ApplicationRecord
       errors.add :date_start, "must be before date end"
     end
   end
+
+  def self.search(search)
+    if search
+      where('event_type ILIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
 end
