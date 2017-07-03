@@ -81,6 +81,16 @@ Event.create(
   user_id: 20
 )
 
+14.times do
+  Event.create(
+    event_type: Faker::TwinPeaks.location,
+    private: [true,false].sample,
+    date_start: Date.parse("Mar 3 2017"),
+    date_end: Faker::Date.between(20.days.ago, Date.today),
+    user_id: rand(1..20)
+  )
+end
+
 Match.create(
   name: "Chile vs Alemania",
   state: 1,
@@ -142,7 +152,7 @@ Participation.create(
 )
 
 Bet.create(
-  ammount: 50,
+  ammount: 75,
   bet_state: 1,
   match_id: 1,
   user_id: 22,
@@ -150,7 +160,7 @@ Bet.create(
 )
 
 Bet.create(
-  ammount: 50,
+  ammount: 25,
   bet_state: 1,
   match_id: 1,
   user_id: 21,

@@ -4,7 +4,7 @@ class Bet < ApplicationRecord
   validates :match_id, presence: true, allow_blank: false
   validates :user_id, presence: true, allow_blank: false
   validates :team_id, presence: true, allow_blank: false
-  #validate :bet_before_expiration_date?
+  validate :bet_before_expiration_date?
   validate :has_suf_money?, :on => :create
   validate :has_suf_updt_money?, :on => :update
 
