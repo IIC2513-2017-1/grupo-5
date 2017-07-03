@@ -21,4 +21,22 @@ $(document).on('turbolinks:load', function () {
       console.log(data);
     });
   }
+  if (($events = $('.events')).length) {
+    $events.on('ajax:success', function (e, data) {
+      var $button;
+      if (data.followed_id) {
+        $button = $('.information [data-user-id="' + data.followed_id + '"]');
+        $button.data('method', 'delete');
+        $button.attr('href', '/follows/' + data.follow_id);
+        $button.text('Unfollow');
+      } else {
+        $button = $('.information [data-user-id="' + data.unfollowed_id + '"]');
+        $button.data('method', 'post');
+        $button.attr('href', '/users/' + data.unfollowed_id + '/follows');
+        $button.text('Follow');
+      }
+    }).on('ajax:error', function (e, data) {
+      console.log(data);
+    });
+  }
 });
