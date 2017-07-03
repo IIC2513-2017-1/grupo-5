@@ -16,6 +16,7 @@
 
   <div class="field">
     <%= f.label :Team %>
+    <br>
     <%= f.select :team_id, Team.all.collect {|team| [team.name, team.id]}, {include_blank: true}, {required: true} %>
   </div>
   <%= f.hidden_field :match_id, :value => @match.id %>

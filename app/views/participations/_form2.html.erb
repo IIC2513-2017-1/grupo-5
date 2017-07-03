@@ -15,11 +15,13 @@
 
   <div class="field">
     <%= f.label :Team %>
+    <br>
     <%= f.select :team_id, Team.all.collect {|team| [team.name, team.id]}, {include_blank: true}, {required: true} %>
   </div>
 
   <div class="field">
     <%= f.label :placing %>
+    <br>
     <%= f.number_field :placing, default: 1, required: true %>
   </div>
 

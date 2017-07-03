@@ -4,8 +4,6 @@
 
     <h2>Match Information</h2>
 
-    <p id="notice"><%= notice %></p>
-
     <p>
       <strong>Match date:</strong>
       <%= @match.match_date %>
@@ -82,10 +80,15 @@
     <br/>
     <strong>Add Team:</strong>
     <%= render :partial => 'participations/form', match: @match %>
+    <div class="Options">
+      <%= link_to 'Create Teams', new_team_path, class: "link-button" %>
+    </div>
   <% end %>
 
   <% if current_user && current_user.id == @event.user_id && @match.state == 0%>
-    <%= button_to 'Close match', {:controller => "placings", :action => "create", :match_id => @match.id}, :method => :post %>
+    <div class="Options">
+      <%= button_to 'Close match', {:controller => "placings", :action => "create", :match_id => @match.id}, :method => :post, class: "link-button" %>
+    </div>
   <% end %>
 
   <% if current_user && @match.state == 1 %>
