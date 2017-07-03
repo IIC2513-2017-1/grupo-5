@@ -1,0 +1,20 @@
+<% t = Team.where(id: bet.team_id).first %>
+<% m = Match.where(id: bet.match_id).first %>
+<% e = Event.where(id: m.event_id).first %>
+
+<div>
+  <%= m.event_id %>
+</div>
+<div>
+  <% if m.name %>
+    <%= m.name %>
+  <% else %>
+    <%= m.id %>
+  <%end %>
+</div>
+<div>
+  <%= t.name %>
+</div>
+<div>
+  <%= bet.ammount %> Coins
+</div>
