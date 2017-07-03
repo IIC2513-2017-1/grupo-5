@@ -57,7 +57,7 @@
             <div>Event</div>
             <div>Match</div>
             <div>Team</div>
-            <div>Ammout</div>
+            <div>Ammount</div>
             <div>Action</div>
           </div>
 
@@ -75,14 +75,13 @@
             <div>Event</div>
             <div>Match</div>
             <div>Team</div>
-            <div>Ammout</div>
-            <div>Action</div>
+            <div>Ammount</div>
           </div>
 
           <% Bet.where("user_id = ? AND bet_state > '0'", current_user.id).each do |bet| %>
-          <div class="old-bets-data tab-data">
-            <%= render 'bets/preview', bet: bet %>
-          </div>
+            <div class="old-bets-data tab-data">
+              <%= render 'bets/preview2', bet: bet %>
+            </div>
           <% end %>
 
         </div>
