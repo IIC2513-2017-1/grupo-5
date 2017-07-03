@@ -25,4 +25,14 @@ class User < ApplicationRecord
   has_many :following, through: :following_relationships, source: :followed
   has_many :followers, through: :followed_relationships, source: :follower
 
+  def self.search(search)
+    if search
+      where('first_name ILIKE ? OR last_name ILIKE ? OR email ILIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+    else
+      all
+    end
+  end
+
+
+
 end

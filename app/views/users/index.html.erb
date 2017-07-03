@@ -6,9 +6,15 @@
 
   <div class="users">
 
-    <div class="users-list">
-      <%= render 'user' %>
-    </div>
+    <%= form_tag users_path, :method => 'get', :id => "users_search" do %>
+      <p>
+        Search: 
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil, :style => "display: none;" %>
+      </p>
+      <div class="users-list"><%= render 'user' %></div>
+    <% end %>
+
   </div>
 
   <br>
