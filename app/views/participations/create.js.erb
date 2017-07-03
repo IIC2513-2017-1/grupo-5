@@ -1,8 +1,3 @@
-console.log("used js");
-var newRow = "<tr><td><%= Team.find(@participation.team_id).name %></td>" +
-             "<td>No results yet</td>" +
-             '<td><%= link_to' Edit ', edit_participation_path(@participation) %></td>' +
-             '<td><%=link_to 'Remove', @participation, method: :delete, data: { confirm: 'Are you sure?' }%></td></tr>';
 var newEntry = '<div class ="match-team-content">' +
                '<div class ="match-team-name attribute"><%= Team.find(@participation.team_id).name %></div>' +
                '<div class ="match-team-result attribute"> No results yet </div>' +
