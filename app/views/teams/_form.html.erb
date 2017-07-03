@@ -1,33 +1,39 @@
-<%= form_for(team) do |f| %>
-  <% if team.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+<div class="form-box box">
 
-      <ul>
+  <%= form_for(team) do |f| %>
+  <% if team.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+    <ul>
       <% team.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
 
   <div class="field">
     <%= f.label :name %>
+    <br>
     <%= f.text_field :name, required: true %>
   </div>
 
   <div class="field">
     <%= f.label :description %>
+    <br>
     <%= f.text_area :description %>
   </div>
 
   <div class="field">
-    <%= f.label :avatar %>
+    <%= f.label :avatar %> (png or  jpg)
+    <br>
     <%= f.file_field :avatar, as: :file %>
-    Supported files: .png, .jpg, up to 500KB.
+
   </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+  <% end %>
+</div>

@@ -1,40 +1,44 @@
 <div class="page-content">
 
   <div class="events">
-    <h2>Information</h2>
+
+    <div class="information">
+      <h2>Information</h2>
 
 
-    <p id="notice"><%= notice %></p>
+      <p id="notice"><%= notice %></p>
 
-    <p>
-      <%= @event.event_type %> event
-    </p>
+      <p>
+        <%= @event.event_type %> event
+      </p>
 
-    <p>
-      <strong>Gestor:</strong>
-      <%= User.where(id: @event.user_id).first.email %>
-      <div class="Options">
-        <% if need_request?(@event) %>
-        <%= following_button(User.find(@event.user_id)) %>
-        <% end %>
-      </div>
-    </p>
+      <p>
+        <strong>Gestor:</strong>
+        <%= User.where(id: @event.user_id).first.email %>
+        <div class="Options">
+          <% if need_request?(@event) %>
+          <%= following_button(User.find(@event.user_id)) %>
+          <% end %>
+        </div>
+      </p>
 
-    <p>
-      <%= if @event.private; 'Private'
-      else; 'Public'
-      end %>
-    </p>
+      <p>
+        <%= if @event.private; 'Private'
+        else; 'Public'
+        end %>
+      </p>
 
-    <p>
-      <strong>Start Date:</strong>
-      <%= @event.date_start %>
-    </p>
+      <p>
+        <strong>Start Date:</strong>
+        <%= @event.date_start %>
+      </p>
 
-    <p>
-      <strong>End Date:</strong>
-      <%= @event.date_end %>
-    </p>
+      <p>
+        <strong>End Date:</strong>
+        <%= @event.date_end %>
+      </p>
+
+    </div>
     <div class="Options">
       <% if current_user && current_user.id == @event.user_id %>
         <%= link_to 'Edit', edit_event_path(@event), class: "link-button" %>

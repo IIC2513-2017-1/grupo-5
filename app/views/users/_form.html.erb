@@ -1,60 +1,70 @@
-<%= form_for(user) do |f| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="form-box box">
 
-      <ul>
+  <%= form_for(user) do |f| %>
+  <% if user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+    <ul>
       <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
 
   <div class="field">
     <%= f.label :email %>
+    <br>
     <%= f.email_field :email, required: true %>
   </div>
 
   <div class="field">
     <%= f.label :first_name %>
+    <br>
     <%= f.text_field :first_name %>
   </div>
 
   <div class="field">
     <%= f.label :last_name %>
+    <br>
     <%= f.text_field :last_name %>
   </div>
 
   <div class="field">
     <%= f.label :password %>
+    <br>
     <%= f.password_field :password, required: true %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %>
+    <br>
     <%= f.password_field :password_confirmation, required: true %>
   </div>
 
   <div class="field">
     <%= f.label :coins %>
+    <br>
     <%= f.number_field :coins, default: 0, required: true %>
   </div>
 
   <% if current_user && current_user.role == 0 %>
   <div class="field">
     <%= f.label :role %>
+    <br>
     <%= f.number_field :role, required: true, value: 0 %>
   </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :avatar %>
+    <%= f.label :avatar %> (png or jpg)
+    <br>
     <%= f.file_field :avatar, as: :file %>
-    Supported files: .png, .jpg, up to 500KB.
   </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+  <% end %>
+</div>

@@ -1,15 +1,17 @@
-<%participation = Participation.new if !participation %>
-<%= form_for(participation, :remote => true) do |f| %>
-  <% if participation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(participation.errors.count, "error") %> prohibited this participation from being saved:</h2>
+<div class="form-box box">
 
-      <ul>
+  <%participation = Participation.new if !participation %>
+  <%= form_for(participation, :remote => true) do |f| %>
+  <% if participation.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(participation.errors.count, "error") %> prohibited this participation from being saved:</h2>
+
+    <ul>
       <% participation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
 
   <div class="field">
@@ -21,4 +23,5 @@
   <div id="participation-submit" class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+  <% end %>
+</div>

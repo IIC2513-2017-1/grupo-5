@@ -1,28 +1,34 @@
 <div class="page-content">
 
-  <p>
-    <%= image_tag @user.avatar.url(:thumb) %>
-  </p>
+  <div class="information">
 
-  <p>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </p>
+    <h2>Information</h2>
+    <p>
+      <%= image_tag @user.avatar.url(:thumb) %>
+    </p>
 
-  <p>
-    <strong>First name:</strong>
-    <%= @user.first_name %>
-  </p>
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
 
-  <p>
-    <strong>Last name:</strong>
-    <%= @user.last_name %>
-  </p>
+    <p>
+      <strong>First name:</strong>
+      <%= @user.first_name %>
+    </p>
 
-  <p>
-    <strong>Coins:</strong>
-    <%= @user.coins %>
-  </p>
+    <p>
+      <strong>Last name:</strong>
+      <%= @user.last_name %>
+    </p>
+
+    <p>
+      <strong>Coins:</strong>
+      <%= @user.coins %>
+    </p>
+
+  </div>
+
 
   <div class="Options">
     <% if current_user && @user.id == current_user.id %>
