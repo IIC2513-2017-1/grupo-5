@@ -12,6 +12,20 @@ div.box{
   padding: 10px;
 }
 
+div.form-box{
+  width: 30%;
+  padding-left: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+div.information{
+  background-color: $dark-primary-color;
+  border-radius: 20px;
+  padding: 30px;
+  width: 40%;
+}
+
 body {
   font-family: Helvetica, Arial, sans-serif;
   color: $text-primary-color;

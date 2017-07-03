@@ -1,31 +1,35 @@
 <div class="page-content">
 
-  <h2>Match Information</h2>
+  <div class="information">
 
-  <p id="notice"><%= notice %></p>
+    <h2>Match Information</h2>
 
-  <p>
-    <strong>Match date:</strong>
-    <%= @match.match_date %>
-  </p>
+    <p id="notice"><%= notice %></p>
 
-  <p>
-    <strong>Bet date:</strong>
-    <%= @match.bet_date %>
-  </p>
+    <p>
+      <strong>Match date:</strong>
+      <%= @match.match_date %>
+    </p>
 
-  <p>
-    <strong>Name:</strong>
-    <%= @match.name %>
+    <p>
+      <strong>Bet date:</strong>
+      <%= @match.bet_date %>
+    </p>
 
-  </p>
-  <p>
-    <strong>State:</strong>
-    <%= if @match.state == 0; 'Bets open'
-    elsif @match.state == 1; 'Bets Closed'
-    else ; 'Closed Match'
-    end %>
-  </p>
+    <p>
+      <strong>Name:</strong>
+      <%= @match.name %>
+
+    </p>
+    <p>
+      <strong>State:</strong>
+      <%= if @match.state == 0; 'Bets open'
+      elsif @match.state == 1; 'Bets Closed'
+      else ; 'Closed Match'
+      end %>
+    </p>
+  </div>
+
 
   <div class="Options">
     <% if current_user && current_user.id == Event.find(@match.event_id).user_id && @match.state == 0%>

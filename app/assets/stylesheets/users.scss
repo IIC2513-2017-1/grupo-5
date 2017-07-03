@@ -174,3 +174,12 @@ div.tab button.active {
   height: 100%;
   text-align: center;
 }
+
+div.pagination span, div.pagination em, div.pagination a{
+  color: $primary-text-color;
+  text-decoration: none;
+}
+
+div.pagination a{
+  background-color: $button-color;
+}
