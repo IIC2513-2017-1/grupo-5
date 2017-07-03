@@ -25,4 +25,8 @@ $(document).on('turbolinks:load', function () {
     $.get(this.href, null, null, "script");
     return false;
   });
+  $("#users_search input").keyup(function() {
+    $.get($("#users_search").attr("action"), $("#users_search").serialize(), null, "script");
+    return false;
+  });
 });
