@@ -8,7 +8,7 @@
 
 //INDEX EVENT
 
-$column-space-percents: 15% 30% 10% 15% 15% 15%;
+$column-space-percents: 25% 30% 10% 10% 10% 15%;
 
 .event-table{
   width: 100%;
@@ -50,6 +50,9 @@ $column-space-percents: 15% 30% 10% 15% 15% 15%;
   border-left: 1px solid $dark-primary-color;
 }
 
+.event-box{
+  text-align: center;
+}
 
 
 //SHOW EVENT

@@ -10,7 +10,7 @@
       </p>
 
       <p>
-        <strong>Gestor:</strong>
+        <strong>Manager:</strong>
         <%= User.where(id: @event.user_id).first.email %>
         <div class="Options">
           <% if need_request?(@event) %>

@@ -93,7 +93,9 @@
 
   <% if current_user && @match.state == 1 %>
     <br/>
-    <%= button_to 'Download results', {:controller => 'informations', :action => "create", :match_id => @match.id, :event_id => @event.id}, :method => :post %>
+    <div class="Options">
+      <%= button_to 'Download results', {:controller => 'informations', :action => "create", :match_id => @match.id, :event_id => @event.id}, :method => :post, class: "link-button" %>
+    </div>
   <% end %>
 
 
