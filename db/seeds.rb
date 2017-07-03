@@ -44,7 +44,7 @@ User.create(
   last_name: "Lopez",
   password: "123456",
   coins: 250,
-  role: 0
+  role: 2
 )
 
 # Create 10 teams

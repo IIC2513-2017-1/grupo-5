@@ -64,10 +64,16 @@
                 <%= participation.placing %>
               <% end %>
             </div>
-            <div class="match-team-actions-subtable">
-                <%= link_to 'Add Result', edit_participation_path(participation), class: "link-button" %>
-                <%= link_to 'Remove', participation, method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button" %>
-            </div>
+            <%if current_user && current_user.role != 1 && current_user.id == @event.user_id && @match.state == 0%>
+              <div class="match-team-actions-subtable">
+                  <%= link_to 'Add Result', edit_participation_path(participation), class: "link-button" %>
+                  <%= link_to 'Remove', participation, method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button" %>
+              </div>
+            <% else %>
+              <div class="no-actions attribute">
+                No actions aviable
+              </div>
+            <% end %>
 
           </div>
         <% end %>
