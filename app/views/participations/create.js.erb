@@ -1,4 +1,5 @@
 var newEntry = '<div class ="match-team-content">' +
+               '<div class ="match-team-avatar"><%= image_tag Team.find(@participation.team_id).avatar.url(:thumb) %></div>' +
                '<div class ="match-team-name attribute"><%= Team.find(@participation.team_id).name %></div>' +
                '<div class ="match-team-result attribute"> No results yet </div>' +
                '<div class ="match-team-actions-subtable"><%= link_to' Add results ', edit_participation_path(@participation), class: 'link-button'%>' +

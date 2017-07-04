@@ -26,6 +26,7 @@
   <div class="match-teams-table">
 
     <div class="teams-headers">
+      <div>Avatar</div>
       <div>Team Names</div>
       <div>Placings</div>
     </div>
@@ -33,6 +34,9 @@
     <% Participation.where(match_id: match.id).each do |participation| %>
       <% t = Team.where(id: participation.team_id).first %>
       <div class="team-content">
+        <div class ="team-avatar attribute">
+          <%= image_tag t.avatar.url(:thumb) %>
+        </div>
         <div class="team-name attribute">
           <%= t.name %>
         </div>

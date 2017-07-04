@@ -11,7 +11,7 @@
 .match-teams-headers{
   background-color: $default-primary-color;
   display: grid;
-  grid-template-columns: 33% 33% 34%;
+  grid-template-columns: 25% 25% 25% 25%;
 }
 
 .match-teams-headers div{
@@ -23,7 +23,7 @@
 .match-team-content{
   background-color: $light-primary-color;
   display: grid;
-  grid-template-columns: 33% 33% 34%;
+  grid-template-columns: 25% 25% 25% 25%;
   border-bottom: 1px solid $default-primary-color;
 }
 
